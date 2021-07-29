@@ -1,20 +1,41 @@
 package com.sw.messenger.domain;
 
-public class Member {
-    private int memberNo;
-    private String memberEmail;
-    private String memberPw;
-    private String memberName;
-    private String memberGrade;
-    private UserRole userRole;
+import javax.persistence.*;
 
-    public Member(int memberNo, String memberEmail, String memberPw, String memberName, String memberGrade, UserRole userRole) {
+@Entity
+public class Member {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "member_no")
+    private int memberNo;
+
+    @Column(name = "member_email")
+    private String memberEmail;
+
+    @Column(name = "member_pw")
+    private String memberPw;
+
+    @Column(name = "member_name")
+    private String memberName;
+
+    @Column(name = "member_grade")
+    private String memberGrade;
+
+    @Column(name = "member_role")
+    @Enumerated(value = EnumType.STRING)
+    private UserRole memberRole;
+
+    public Member(){
+
+    }
+    public Member(int memberNo, String memberEmail, String memberPw, String memberName, String memberGrade, UserRole memberRole) {
         this.memberNo = memberNo;
         this.memberEmail = memberEmail;
         this.memberPw = memberPw;
         this.memberName = memberName;
         this.memberGrade = memberGrade;
-        this.userRole = userRole;
+        this.memberRole = memberRole;
     }
 
     public int getMemberNo() {
@@ -57,11 +78,11 @@ public class Member {
         this.memberGrade = memberGrade;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public UserRole getMemberRole() {
+        return memberRole;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setMemberRole(UserRole memberRole) {
+        this.memberRole = memberRole;
     }
 }
