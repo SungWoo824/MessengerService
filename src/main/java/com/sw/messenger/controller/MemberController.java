@@ -17,8 +17,14 @@ public class MemberController {
     private MemberService memberService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ResponseMessage> registMember(@RequestBody Member member){
+    public ResponseEntity<ResponseMessage> signUpMember(@RequestBody Member member){
         ResponseMessage responseMessage = memberService.memberSignUp(member);
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    @PostMapping("/signin")
+    public ResponseEntity<ResponseMessage> signInMember(@RequestBody Member member){
+        ResponseMessage responseMessage = memberService.memberSignIn(member);
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 }

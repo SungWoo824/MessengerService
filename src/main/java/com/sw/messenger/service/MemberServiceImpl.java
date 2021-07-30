@@ -20,8 +20,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public ResponseMessage memberSignUp(Member member) {
-        String inputPw = member.getMemberPw();
-        member.setMemberPw(new BCryptPasswordEncoder().encode(inputPw));
+        member.setMemberPw(new BCryptPasswordEncoder().encode(member.getMemberPw()));
         member.setMemberRole(UserRole.USER);
 
         memberRepository.findByMemberEmail(member.getMemberEmail()).ifPresent(member1 -> {
@@ -34,5 +33,18 @@ public class MemberServiceImpl implements MemberService{
         }
         member.setMemberPw("");
         return new ResponseMessage(member,"회원가입에 성공했습니다.");
+    }
+
+    @Override
+    public ResponseMessage memberSignIn(Member member) {
+        member.setMemberPw(new BCryptPasswordEncoder().encode(member.getMemberPw()));
+        Member findMember = memberRepository.findByMemberEmailAndMemberPw(member.getMemberEmail(),member.getMemberPw());
+
+        if (findMember==null){
+            return new ResponseMessage(null,"존재하지 않는 이메일 또는 잘못된 비밀번호 입니다. 다시 확인해주세요.");
+        }
+
+        findMember.setMemberPw("");
+        return new ResponseMessage(findMember,"회원정보가 확인 되었습니다.");
     }
 }

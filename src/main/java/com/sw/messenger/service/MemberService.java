@@ -5,4 +5,5 @@ import com.sw.messenger.domain.dto.ResponseMessage;
 
 public interface MemberService {
     ResponseMessage memberSignUp(Member member);
+    ResponseMessage memberSignIn(Member member);
 }
