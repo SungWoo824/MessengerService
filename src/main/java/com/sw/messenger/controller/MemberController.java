@@ -6,6 +6,7 @@ import com.sw.messenger.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,11 @@ public class MemberController {
     public ResponseEntity<ResponseMessage> signInMember(@RequestBody Member member){
         ResponseMessage responseMessage = memberService.memberSignIn(member);
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<ResponseMessage> getMemberInfo(@RequestBody Member member){
+        ResponseMessage responseMessage = memberService.getMemberInfo(member);
+        return new ResponseEntity<>(responseMessage,HttpStatus.OK);
     }
 }

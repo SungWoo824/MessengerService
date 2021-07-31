@@ -47,4 +47,10 @@ public class MemberServiceImpl implements MemberService{
         findMember.setMemberPw("");
         return new ResponseMessage(findMember,"회원정보가 확인 되었습니다.");
     }
+
+    @Override
+    public ResponseMessage getMemberInfo(Member member) {
+
+        return null;
+    }
 }
