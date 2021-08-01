@@ -14,9 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
+    private final ResponseMessage responseMessage;
+
     @ExceptionHandler(CUserNotFoundException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     protected ResponseMessage userNotFoundException(HttpServletRequest request, CUserNotFoundException e){
-        return new ResponseMessage(500,e.getStackTrace(),"잘못된 로그인정보 입니다.");
+        return responseMessage.getFailResult(500,"잘못된 회원정보입니다.");
     }
 }

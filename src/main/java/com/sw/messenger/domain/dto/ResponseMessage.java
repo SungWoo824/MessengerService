@@ -29,4 +29,7 @@ public class ResponseMessage {
         this.data = data;
         this.message = message;
     }
+    public ResponseMessage getFailResult(int status, String Message){
+        return new ResponseMessage(status,message);
+    }
 }

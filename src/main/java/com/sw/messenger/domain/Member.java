@@ -1,9 +1,7 @@
 package com.sw.messenger.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +16,9 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "member")
 public class Member implements UserDetails {
 
     @Id
@@ -25,32 +26,22 @@ public class Member implements UserDetails {
     @Column(name = "member_no")
     private Long memberNo;
 
-    @Column(name = "member_email")
+    @Column(name = "member_email", unique = true, length = 30)
     private String memberEmail;
 
-    @Column(name = "member_pw")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "member_pw", nullable = false, length = 100)
     private String memberPw;
 
-    @Column(name = "member_name")
+    @Column(name = "member_name", nullable = false, length = 60)
     private String memberName;
 
-    @Column(name = "member_grade")
-    private String memberGrade;
+    @Column(name = "member_grade", columnDefinition = "default 0")
+    private int memberGrade;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
-
-    public Member(){
-
-    }
-    public Member(Long memberNo, String memberEmail, String memberPw, String memberName, String memberGrade) {
-        this.memberNo = memberNo;
-        this.memberEmail = memberEmail;
-        this.memberPw = memberPw;
-        this.memberName = memberName;
-        this.memberGrade = memberGrade;
-    }
 
 
     @Override
