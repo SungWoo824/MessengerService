@@ -6,6 +6,7 @@ import com.sw.messenger.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class MemberController {
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 
+    @Secured("ROLE_USER")
     @GetMapping("/info")
     public ResponseEntity<ResponseMessage> getMemberInfo(@RequestBody Member member){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

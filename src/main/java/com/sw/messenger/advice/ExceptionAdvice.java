@@ -5,6 +5,7 @@ import com.sw.messenger.advice.exception.CUserNotFoundException;
 import com.sw.messenger.domain.dto.ResponseMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -26,5 +27,10 @@ public class ExceptionAdvice {
     @ExceptionHandler(CAuthenticationEntryPointException.class)
     public ResponseMessage authenticationEntryPointException(HttpServletRequest request, CAuthenticationEntryPointException e){
         return responseMessage.getFailResult(401, "권한이 없습니다.");
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseMessage AccessDeniedException(HttpServletRequest request, AccessDeniedException e){
+        return responseMessage.getFailResult(401, "보유 권한으로는 접근할수 없습니다.");
     }
 }
