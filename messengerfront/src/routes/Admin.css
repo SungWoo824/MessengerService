@@ -1,0 +1,57 @@
+
+/*어드민*/
+.admin-wrap {
+    display: flex;
+}
+
+.msg-wrap {
+    padding-bottom: 40px;
+}
+
+.mDashStatus {
+    -ms-flex: 1;
+    flex: 1;
+    text-align: center;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 1px 0 rgba(205, 211, 222, 1);
+    -moz-box-shadow: 0 2px 1px 0 rgba(205, 211, 222, 1);
+    box-shadow: 0 2px 1px 0 rgba(205, 211, 222, 1);
+    -webkit-transition: .2s ease-out;
+    transition: .2s ease-out;
+}
+
+.admin-card {
+    -webkit-transition: .2s ease-out;
+    text-align: center;
+}
+
+.admin-card:hover {
+    background: #5ea5fe;
+    color: white;
+}
+
+.admin-cardy {
+    -webkit-transition: .2s ease-out;
+    text-align: center;
+}
+
+.admin-cardy-body {
+    margin: auto;
+    padding-top: unset;
+}
+
+.admin-card-body {
+    margin: auto;
+    padding-top: 65px;
+}
+
+#chat_dummy {
+    height: 80px;
+    width: 80px;
+}
+
+.findpw-submit {
+    height: 2.5rem;
+    margin: 1rem
+}

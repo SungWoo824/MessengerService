@@ -1,12 +1,12 @@
 import React from "react";
 import { HashRouter, Route} from "react-router-dom";
-import logo from './logo.svg';
+import Home from "./routes/Main";
 import './App.css';
 
 function App() {
   return (
     <HashRouter>
-      
+        <Route path="/" component={Home}/>
     </HashRouter>
   );
 }
