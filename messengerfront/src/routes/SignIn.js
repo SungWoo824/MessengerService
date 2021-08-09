@@ -1,6 +1,7 @@
 import React from "react";
 import MainNavigation from "../component/MainNavigation";
 import SignInComponent from "../component/SignInComponent";
+import "./Main.css";
 
 class SignIn extends React.Component{
     state = {

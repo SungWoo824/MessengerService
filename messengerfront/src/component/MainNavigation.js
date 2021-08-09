@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function MainNavigation({state}) {
     const {token} = {state}.state;
@@ -27,18 +28,18 @@ function MainNavigation({state}) {
                         </li>
                         {
                             token !== ''
-                            ? <li className="gnb-text"><a href="">내정보</a></li>
+                            ? <li className="gnb-text"><Link to="">내정보</Link></li>
                             : null
                         }
                         {
                             token !== ''
                                 ?
                                     <li className="logout-btn">
-                                        <a href="/member/signout">로그아웃</a>
+                                        <Link to="/member/signout">로그아웃</Link>
                                     </li>
                                 :
                                     <li className="login-btn">
-                                        <a href="/member/signin">로그인</a>
+                                        <Link to="/member/signin">로그인</Link>
                                     </li>
                         }
                     </ul>

@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <HashRouter>
-        <Route path="/" component={Home}/>
+        <Route exact path="/" component={Home}/>
         <Route path="/member/signin" component={SignIn}/>
     </HashRouter>
   );
