@@ -6,7 +6,7 @@ function SignInComponent(){
             <div className="main-bg">
                 <div id="fullpage">
                     <div className="section">
-                        <div className="main-title">
+                        <div className="login-div">
                             <form action="signin" method="post">
                                 <div>
                                     <span>로그인</span>

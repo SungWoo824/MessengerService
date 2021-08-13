@@ -160,6 +160,21 @@ span {
     top: 300px;
 }
 
+.login-div {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+    top: 250px;
+}
+
+.login-div span {
+    color: #333;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
 .pay-title {
     position: relative;
     display: inline-block;
