@@ -1,6 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
+import "../lib/Authentication";
 
 function SignInComponent(){
+    const onClick = () => {
+        AuthenticationService.executeJwtAuthenticationService().then(r => r.data);
+    }
     return (
         <div className="circle-main-content">
             <div className="main-bg">
@@ -25,7 +29,8 @@ function SignInComponent(){
                                 </div>
                                 <div>
                                     <div>
-                                        <button type="button" className="btn btn-primary signin-submit">로그인</button>
+                                        <button type="button" className="btn btn-primary signin-submit"
+                                         onClick={onClick}>로그인</button>
                                     </div>
                                 </div>
                             </form>

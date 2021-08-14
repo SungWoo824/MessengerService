@@ -3,9 +3,9 @@ import axios from 'axios'
 class AuthenticationService {
     // send username, password to the SERVER
     executeJwtAuthenticationService(username, password) {
-        return axios.post('', {
-            username,
-            password
+        return axios.post('http://localhost:8080/', {
+            memberEmail : username,
+            memberPw : password
         })
     }
 
