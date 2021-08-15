@@ -2,7 +2,8 @@ import React from "react";
 import {Link} from "react-router-dom";
 
 function MainNavigation({state}) {
-    const {token} = {state}.state;
+    const token = {state}.state;
+
     return (
         <div className="circle-header">
 
@@ -27,12 +28,12 @@ function MainNavigation({state}) {
                             <a href="#hash3" data-menuanchor="test3">요금안내</a>
                         </li>
                         {
-                            token !== ''
+                            token
                             ? <li className="gnb-text"><Link to="">내정보</Link></li>
                             : null
                         }
                         {
-                            token !== ''
+                            token
                                 ?
                                     <li className="logout-btn">
                                         <Link to="/member/signout">로그아웃</Link>

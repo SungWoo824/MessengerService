@@ -1,10 +1,27 @@
 import React, {useState} from "react";
-import "../lib/Authentication";
+import {AuthenticationService} from "../lib/Authentication";
 
 function SignInComponent(){
-    const onClick = () => {
-        AuthenticationService.executeJwtAuthenticationService().then(r => r.data);
+    const [inputId, setInputId] = useState('');
+    const [inputPw, setInputPw] = useState('');
+    const service = new AuthenticationService();
+    const handleInputId = (e) => {
+        setInputId(e.target.value)
     }
+
+    const handleInputPw = (e) => {
+        setInputPw(e.target.value)
+    }
+
+    // login 버튼 클릭 이벤트
+    const onClickLogin = () => {
+        console.log('click login');
+        console.log(inputId,inputPw);
+        service.executeJwtAuthenticationService(inputId, inputPw)
+            .then(r => service.registerSuccessfulLoginForJwt(inputId,r.data));
+    }
+
+
     return (
         <div className="circle-main-content">
             <div className="main-bg">
@@ -19,18 +36,18 @@ function SignInComponent(){
                                         <label htmlFor="exampleInputEmail1"></label>
                                         <input type="email" className="form-control" id="exampleInputEmail1"
                                                name="member_email" aria-describedby="emailHelp"
-                                               placeholder="Enter email"/>
+                                               placeholder="Enter email" onChange={handleInputId}/>
                                     </div>
                                     <div className="form-group signin-form-group">
                                         <label htmlFor="exampleInputPassword1"></label>
                                         <input type="password" className="form-control" id="exampleInputPassword1"
-                                               name="member_pw" placeholder="Password"/>
+                                               name="member_pw" placeholder="Password" onChange={handleInputPw}/>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
                                         <button type="button" className="btn btn-primary signin-submit"
-                                         onClick={onClick}>로그인</button>
+                                         onClick={onClickLogin}>로그인</button>
                                     </div>
                                 </div>
                             </form>

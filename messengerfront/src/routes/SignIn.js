@@ -2,23 +2,20 @@ import React from "react";
 import MainNavigation from "../component/MainNavigation";
 import SignInComponent from "../component/SignInComponent";
 import "./Main.css";
+import {AuthenticationService} from "../lib/Authentication";
 
 class SignIn extends React.Component{
-    state = {
-        token : localStorage.getItem("token")??''
-    }
+    authenticationService = new AuthenticationService();
+    isSet = this.authenticationService.isUserLoggedIn();
     render() {
         return (
             <div>
-                <MainNavigation state={this.state}/>
+                <MainNavigation state={this.isSet}/>
                 <SignInComponent/>
             </div>
         );
     }
 
-    onClick(){
-
-    }
 }
 
 export default SignIn;

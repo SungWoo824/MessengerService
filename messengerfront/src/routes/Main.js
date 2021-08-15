@@ -1,16 +1,16 @@
 import React from "react";
 import MainIndex from "../component/MainIndex";
 import MainNavigation from "../component/MainNavigation";
+import {AuthenticationService} from "../lib/Authentication";
 import "./Main.css";
 
 class Home extends React.Component{
-    state = {
-        token : localStorage.getItem("token")??''
-    }
+    authenticationService = new AuthenticationService();
+    isSet = this.authenticationService.isUserLoggedIn();
     render() {
         return (
             <div>
-                <MainNavigation state = {this.state}/>
+                <MainNavigation state = {this.isSet}/>
                 <MainIndex/>
             </div>
         );
