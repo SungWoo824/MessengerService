@@ -2,6 +2,7 @@ package com.sw.messenger.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@RequiredArgsConstructor
 public class ResponseMessage {
     private int status;
     private Object data;
@@ -23,13 +25,7 @@ public class ResponseMessage {
         this.data = data;
         this.message = message;
     }
-    public ResponseMessage(int status, Object data, String message) {
-        this.status = status;
-        this.time = LocalDateTime.now();
-        this.data = data;
-        this.message = message;
-    }
-    public ResponseMessage getFailResult(int status, String Message){
+    public ResponseMessage getFailResult(int status, String message){
         return new ResponseMessage(status,message);
     }
 }

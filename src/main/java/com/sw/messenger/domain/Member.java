@@ -36,7 +36,7 @@ public class Member implements UserDetails {
     @Column(name = "member_name", nullable = false, length = 60)
     private String memberName;
 
-    @Column(name = "member_grade", columnDefinition = "default 0")
+    @Column(name = "member_grade", columnDefinition = "int default 0")
     private int memberGrade;
 
     @ElementCollection(fetch = FetchType.EAGER)
