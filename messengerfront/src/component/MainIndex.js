@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function MainIndex(){
     return (
@@ -18,7 +19,7 @@ function MainIndex(){
                             </div>
                             <div className="main-btn">
                                 <div className="main-btn-bg">
-                                    <a href="/member/signup">무료 체험 시작</a><br/><br/>
+                                    <Link to="/member/signup">무료 체험 시작</Link><br/><br/>
                                 </div>
                             </div>
                         </div>
