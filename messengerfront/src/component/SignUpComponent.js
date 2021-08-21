@@ -1,7 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
+import axios from "axios";
 
 function SignUpComponent(){
+    const [memberEmail, setMemberEmail] = useState('');
+    const [memberPw, setMemberPw] = useState('');
+    const [memberName, setMemberName] = useState('');
+    const handleEmail = (e) => {
+        setMemberEmail(e.target.value);
+    }
+    const handlePw = (e) => {
+        setMemberPw(e.target.value);
+    }
+    const handleName = (e) => {
+        setMemberName(e.target.value);
+    }
 
+    const onClickSignUp= () => {
+        console.log("sign up click");
+        const data = {
+            memberEmail : memberEmail,
+            memberPw : memberPw,
+            memberName : memberName
+        };
+        const axiosConfig = {
+            headers:{
+                "Content-Type" : "application/json"
+            }
+        }
+        axios.post(
+            'http://localhost:8080/member/signup',
+            JSON.stringify(data),
+            axiosConfig
+        ).then(function(response){
+            console.log("회원가입 완료. 로그인 페이지로 이동합니다.");
+        }).catch(function(error){
+            console.log("에러가 발생했습니다.", error);
+        });
+    }
     return (
         <div className="signup-article">
             <div className="main-bg">
@@ -14,34 +49,27 @@ function SignUpComponent(){
                                     <span>회원가입</span>
 
                                     <div className="form-group signin-form-group">
-                                        <label htmlFor="exampleInputEmail1"></label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1"
+                                        <input type="email" className="form-control signUpInputForm"
                                                name="member_email" aria-describedby="emailHelp"
-                                               placeholder="Enter email" required/>
+                                               placeholder="Enter email" onChange={handleEmail} required/>
                                     </div>
                                     <div className="form-group signin-form-group">
-                                        <label htmlFor="exampleInputPassword1"></label>
-                                        <input type="password" className="form-control" id="exampleInputPassword1"
-                                               name="member_pw" placeholder="Password" required/>
+                                        <input type="password" className="form-control signUpInputForm"
+                                               name="member_pw" placeholder="Password" onChange={handlePw} required/>
                                     </div>
                                     <div className="form-group signin-form-group">
-                                        <label htmlFor="exampleInputEmail1"></label>
-                                        <input type="text" className="form-control" id="exampleInputEmail1"
+                                        <input type="text" className="form-control signUpInputForm"
                                                name="member_name" aria-describedby="emailHelp" placeholder="Enter name"
-                                               required/>
+                                               onChange={handleName} required/>
                                     </div>
                                     <div className="form-group signin-form-group">
-                                        <label htmlFor="exampleInputEmail1"></label>
-                                        <input type="file" className="form-control" id="exampleInputEmail1" name="file"
+                                        <input type="file" className="form-control signUpInputForm" name="file"
                                                accept="image/*"/>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
-
-                                        <button type="submit" className="btn btn-primary signin-submit">회원가입</button>
-
-
+                                        <button type="button" className="btn btn-primary signin-submit" onClick={onClickSignUp}>회원가입</button>
                                     </div>
                                 </div>
                             </form>

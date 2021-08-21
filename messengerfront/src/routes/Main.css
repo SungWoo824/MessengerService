@@ -362,6 +362,10 @@ span {
     margin: auto;
 }
 
+.signUpInputForm {
+    margin-top: 20px;
+}
+
 .w-400 {
     width: 400px;
 }

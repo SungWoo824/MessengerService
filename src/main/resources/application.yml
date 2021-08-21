@@ -4,7 +4,7 @@ spring :
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/messenger
+    url: jdbc:mysql://localhost:3307/messenger?serverTimezone=UTC
     username: root
     password: 1234
 

@@ -3,17 +3,15 @@ import MainNavigation from "../component/MainNavigation";
 import {AuthenticationService} from "../lib/Authentication";
 import SignUpComponent from "../component/SignUpComponent";
 
-class SignUp extends React.Component{
-    authenticationService = new AuthenticationService();
-    isSet = this.authenticationService.isUserLoggedIn();
+function SignUp (){
+    const authenticationService = new AuthenticationService();
+    const isSet = authenticationService.isUserLoggedIn();
+    return (
+        <div>
+            <MainNavigation state={isSet}/>
+            <SignUpComponent/>
+        </div>
+    )
 
-    render(){
-        return (
-            <div>
-                <MainNavigation state={this.isSet}/>
-                <SignUpComponent/>
-            </div>
-        )
-    }
 }
 export default SignUp;

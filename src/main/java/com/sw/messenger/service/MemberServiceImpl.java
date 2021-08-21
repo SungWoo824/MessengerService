@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService{
         member.setMemberPw(passwordEncoder.encode(member.getMemberPw()));
         member.setRoles(Arrays.asList(UserRole.USER.toString()));
 
-        memberRepository.findByMemberEmail(member.getMemberEmail()).ifPresent(member1 -> {
+        Optional.ofNullable(memberRepository.findByMemberEmail(member.getMemberEmail())).ifPresent(member1 -> {
             throw new DuplicateKeyException("이미 존재하는 이메일 입니다.");
         });
         try {
