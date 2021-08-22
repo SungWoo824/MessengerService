@@ -1,9 +1,11 @@
 import React, {useState} from "react";
 import {AuthenticationService} from "../lib/Authentication";
+import {useHistory} from "react-router-dom";
 
 function SignInComponent(){
     const [inputId, setInputId] = useState('');
     const [inputPw, setInputPw] = useState('');
+
     const service = new AuthenticationService();
     const handleInputId = (e) => {
         setInputId(e.target.value)
@@ -18,7 +20,12 @@ function SignInComponent(){
         console.log('click login');
         console.log(inputId,inputPw);
         service.executeJwtAuthenticationService(inputId, inputPw)
-            .then(r => service.registerSuccessfulLoginForJwt(inputId,r.data));
+            .then(function (response){
+                service.registerSuccessfulLoginForJwt(inputId,response.data.data);
+                window.location.replace("/");
+            }).catch((error) => {
+                alert(error);
+        });
     }
 
 

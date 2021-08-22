@@ -1,9 +1,13 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import {AuthenticationService} from "../lib/Authentication";
 
-function MainNavigation({state}) {
-    const token = {state}.state;
-
+function MainNavigation() {
+    const authenticationService = new AuthenticationService();
+    const isSet = authenticationService.isUserLoggedIn();
+    const onClickLogout = () => {
+        authenticationService.logout();
+    }
     return (
         <div className="circle-header">
 
@@ -28,15 +32,15 @@ function MainNavigation({state}) {
                             <a href="#hash3" data-menuanchor="test3">요금안내</a>
                         </li>
                         {
-                            token
+                            isSet
                             ? <li className="gnb-text"><Link to="">내정보</Link></li>
                             : null
                         }
                         {
-                            token
+                            isSet
                                 ?
                                     <li className="logout-btn">
-                                        <Link to="/member/signout">로그아웃</Link>
+                                        <Link to="/" onClick={onClickLogout}>로그아웃</Link>
                                     </li>
                                 :
                                     <li className="login-btn">
