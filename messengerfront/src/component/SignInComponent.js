@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {AuthenticationService} from "../lib/Authentication";
-import {useHistory} from "react-router-dom";
 
 function SignInComponent(){
     const [inputId, setInputId] = useState('');
@@ -22,7 +21,7 @@ function SignInComponent(){
         service.executeJwtAuthenticationService(inputId, inputPw)
             .then(function (response){
                 service.registerSuccessfulLoginForJwt(inputId,response.data.data);
-                window.location.replace("/");
+                window.location.replace("/member/mypage");
             }).catch((error) => {
                 alert(error);
         });
