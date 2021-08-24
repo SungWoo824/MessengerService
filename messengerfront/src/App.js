@@ -11,9 +11,9 @@ function App() {
   return (
     <HashRouter>
         <Route exact path="/" component={Home}/>
-        <Route path="/member/signin" component={SignIn}/>
-        <Route path="/member/signup" component={SignUp}/>
-        <Route path="/member/mypage" component={Mypage}/>
+        <Route exact path="/member/signin" component={SignIn}/>
+        <Route exact path="/member/signup" component={SignUp}/>
+        <Route exact path="/member/mypage" component={Mypage}/>
     </HashRouter>
   );
 }
