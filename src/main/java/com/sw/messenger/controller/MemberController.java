@@ -33,7 +33,7 @@ public class MemberController {
 
     @Secured("ROLE_USER")
     @GetMapping("/info")
-    public ResponseEntity<ResponseMessage> getMemberInfo(@RequestBody Member member){
+    public ResponseEntity<ResponseMessage> getMemberInfo(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String id = authentication.getName();
         ResponseMessage responseMessage = memberService.getMemberInfo(id);

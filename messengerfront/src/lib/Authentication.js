@@ -32,7 +32,7 @@ export class AuthenticationService {
             config => {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    config.headers['Authorization'] = 'Bearer ' + token;
+                    config.headers['X-AUTH-TOKEN'] = token;
                 }
                 // config.headers['Content-Type'] = 'application/json';
                 return config;
