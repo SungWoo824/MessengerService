@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
         }
 
         findMember.get().setMemberPw("");
-
+        System.out.println(findMember.get().getRoles());
         return new ResponseMessage(
                 jwtTokenProvider.createToken(
                         String.valueOf(findMember.get().getMemberNo()),
