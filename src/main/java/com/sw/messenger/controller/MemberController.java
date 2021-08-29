@@ -39,8 +39,8 @@ public class MemberController {
     @Secured("ROLE_USER")
     @GetMapping("/info")
     public ResponseEntity<ResponseMessage> getMemberInfo(HttpServletRequest request){
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Authentication authentication = jwtTokenProvider.getAuthentication(jwtTokenProvider.resolveToken(request));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Authentication authentication = jwtTokenProvider.getAuthentication(jwtTokenProvider.resolveToken(request));
         String id = authentication.getName();
         System.out.println(id);
         ResponseMessage responseMessage = memberService.getMemberInfo(id);

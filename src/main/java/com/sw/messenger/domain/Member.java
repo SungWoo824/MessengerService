@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "member")
+@ToString
 public class Member implements UserDetails {
 
     @Id

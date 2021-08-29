@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .and().authorizeRequests() // 다음 리퀘스트에 대한 사용권한 체크(리소스 별 허용 범위 설정)
             .antMatchers(PUBLIC_URI).permitAll() // 가입 및 인증 주소는 누구나 접근가능
             .antMatchers(HttpMethod.GET, PUBLIC_GET_URI).permitAll() // 등록된 GET요청 리소스는 누구나 접근가능 //
-            .antMatchers("/*/users").hasRole("ADMIN") // '/users' api는 ROLE_ADMIN 만 가능함.
+//            .antMatchers("/*/users").hasRole("ADMIN") // '/users' api는 ROLE_ADMIN 만 가능함.
             .anyRequest().hasRole("USER") // 그외 나머지 요청은 모두 인증된 회원만 접근 가능
             .and().exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler()) // 인증 오류 발생 시 처리를 위한 핸들러 추가
             .and().exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 오류 발생 시 처리를 위한 핸들러 추가
