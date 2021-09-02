@@ -23,7 +23,7 @@ function SignInComponent(){
         service.executeJwtAuthenticationService(inputId, inputPw)
             .then(function (response){
                 service.registerSuccessfulLoginForJwt(inputId,response.data.data);
-                history.replace("/member/mypage")
+                history.replace("/member/mypage");
             }).catch((error) => {
                 alert(error);
         });

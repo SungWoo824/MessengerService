@@ -15,6 +15,8 @@ import javax.persistence.*;
 @Table(name = "team_member")
 public class TeamMember {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "team_member_no")
     private Long teamMemberNo;
 
     @ManyToOne

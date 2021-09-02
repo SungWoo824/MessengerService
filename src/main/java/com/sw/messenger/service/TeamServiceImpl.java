@@ -7,6 +7,7 @@ import com.sw.messenger.domain.TeamMember;
 import com.sw.messenger.domain.dto.ResponseMessage;
 import com.sw.messenger.repository.TeamMemberRepository;
 import com.sw.messenger.repository.TeamRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,11 @@ import java.util.List;
 @Service
 public class TeamServiceImpl implements TeamService{
 
+    @Autowired
     private TeamRepository teamRepository;
+    @Autowired
     private TeamMemberRepository teamMemberRepository;
-
+    @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
@@ -31,9 +34,11 @@ public class TeamServiceImpl implements TeamService{
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
         Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
         TeamMember teamMember = new TeamMember();
-        teamMember.builder().member(member).team(saveTeam)
-                .teamMemberAuth(2).teamMemberJobPosition("ADMIN")
-                .teamMemberGrade("관리자").build();
+        teamMember.setTeam(saveTeam);
+        teamMember.setMember(member);
+        teamMember.setTeamMemberAuth(2);
+        teamMember.setTeamMemberGrade("관리자");
+        teamMember.setTeamMemberJobPosition("ADMIN");
         teamMemberRepository.save(teamMember);
 
         return new ResponseMessage(saveTeam,"팀 생성에 성공하였습니다.");

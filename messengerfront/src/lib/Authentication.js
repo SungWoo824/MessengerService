@@ -50,8 +50,6 @@ export class AuthenticationService {
 
     isUserLoggedIn() {
         const token = localStorage.getItem('token');
-        console.log("===UserloggedInCheck===");
-        console.log(token);
 
         if (token) {
             return true;
@@ -61,7 +59,6 @@ export class AuthenticationService {
     }
 
     getLoggedInUserName() {
-        //let user = sessionStorage.getItem('authenticatedUser')
         let user = localStorage.getItem('authenticatedUser');
         if(user===null) return '';
         return user;

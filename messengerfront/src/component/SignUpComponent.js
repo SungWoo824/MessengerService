@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import axios from "axios";
+import {useHistory} from "react-router-dom";
 
 function SignUpComponent(){
     const [memberEmail, setMemberEmail] = useState('');
     const [memberPw, setMemberPw] = useState('');
     const [memberName, setMemberName] = useState('');
+    const history = useHistory();
     const handleEmail = (e) => {
         setMemberEmail(e.target.value);
     }
@@ -33,6 +35,7 @@ function SignUpComponent(){
             axiosConfig
         ).then(function(response){
             console.log("회원가입 완료. 로그인 페이지로 이동합니다.");
+            history.replace("/member/signin");
         }).catch(function(error){
             console.log("에러가 발생했습니다.", error);
         });

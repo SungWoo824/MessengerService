@@ -1,15 +1,16 @@
 import React from "react";
 import MainNavigation from "../component/MainNavigation";
-import SignUpComponent from "../component/SignUpComponent";
+import TeamRegistComponent from "../component/Mypage/TeamRegistComponent";
+
 import "./Main.css";
 
-function SignUp (){
-    return (
+function TeamRegist(){
+    return(
         <div>
             <MainNavigation/>
-            <SignUpComponent/>
+            <TeamRegistComponent/>
         </div>
     )
-
 }
-export default SignUp;
+
+export default TeamRegist;
