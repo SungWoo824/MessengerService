@@ -1,35 +1,44 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import MainNavigation from "../component/MainNavigation";
-import MypageTeamListComponent from "../component/MypageTeamListComponent";
-import MypageInfoComponent from "../component/MypageInfoComponent";
+import MypageTeamListComponent from "../component/Mypage/MypageTeamListComponent";
+import MypageInfoComponent from "../component/Mypage/MypageInfoComponent";
 import {AuthenticationService} from "../lib/Authentication";
+import {Link} from "react-router-dom";
 
 function Mypage () {
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
     let [nowLoading, setNowLoading] = useState(true);
-    // let [teamList, setTeamList] = useState([]);
-    let [userInfo, setUserInfo] =useState();
+    let [teamLoading, setTeamLoading] = useState(true);
+    let [teamList, setTeamList] = useState([]);
+    let [userInfo, setUserInfo] =useState({});
     useEffect(() => {
         axios.get(
             "http://localhost:8080/member/info"
-        ).then(function (responese) {
-            if (responese.data.data === 401) {
+        ).then(function (response) {
+            if (response.data.data === 401) {
                 console.log("Not allow!!!");
+                return false;
             } else {
-                setUserInfo(responese.data.data);
+                setUserInfo(response.data.data);
                 setNowLoading(false);
+
+                const teamListUrl =response.data.data.memberNo;
+                axios.get("http://localhost:8080/team/teamList?memberNo="+teamListUrl)
+                    .then(function (teamResponse){
+                        setTeamList(teamResponse.data.data);
+                        setTeamLoading(false);
+                    });
             }
         });
     },[]);
-    console.log(userInfo);
     return (
         <div>
             <MainNavigation/>
             <div className="mypage-main">
                 <div className="main-bg">
-                    <div id="fullpage">
+                    <div className="fullpage">
                         <div className="section">
                             <div className="mypage-main-content">
                                 {nowLoading ?
@@ -44,11 +53,23 @@ function Mypage () {
                                 }
 
                                 <hr/>
-                                <MypageTeamListComponent/>
+                                <p> 팀 리스트</p>
+                                {teamLoading ?
+                                    <div>now Loading</div>
+                                    :
+                                    (teamList.map(teamMember => (
+                                        <MypageTeamListComponent
+                                            key={teamMember.team.teamNo}
+                                            teamName={teamMember.team.teamName}
+                                            teamDomain={teamMember.team.teamDomain}
+                                            teamMemberJobPosition={teamMember.teamMemberJobPosition}
+                                        />
+                                    )))
+                                }
                                 <div className="mypage-team-create">
-                                    <button className="btn btn-primary btn-lg btn-block" type="submit">
+                                    <Link to="/team/regist" className="btn btn-primary btn-lg btn-block">
                                         팀생성
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
