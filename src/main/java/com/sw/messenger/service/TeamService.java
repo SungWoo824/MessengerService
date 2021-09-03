@@ -9,6 +9,7 @@ import javax.servlet.ServletRequest;
 public interface TeamService {
     ResponseMessage registTeam(ServletRequest request,Team team);
     ResponseMessage getTeamList(Long memberNo);
+    ResponseMessage getTeamInfo(ServletRequest request, Long TeamNo);
     ResponseMessage modifyTeamSetting(Team team);
     ResponseMessage teamOwnerSetting(Team team);
 }

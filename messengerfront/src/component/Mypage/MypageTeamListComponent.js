@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function MypageTeamListComponent({teamNo, teamName, teamDomain, teamMemberJobPosition}) {
     return (
@@ -21,9 +22,9 @@ function MypageTeamListComponent({teamNo, teamName, teamDomain, teamMemberJobPos
                     </div>
 
                     <div className="mypage-team-div">
-                        <button type="submit" className="btn btn-outline-secondary">
+                        <Link to={"/team/manage/"+teamNo} className="btn btn-outline-secondary">
                             설정
-                        </button>
+                        </Link>
                     </div>
 
                     <div className="mypage-team-div">

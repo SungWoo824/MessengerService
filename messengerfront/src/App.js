@@ -7,6 +7,7 @@ import SignUp from "./routes/SignUp";
 import Mypage from "./routes/Mypage";
 import TeamRegist from "./routes/TeamRegist";
 import './App.css';
+import TeamManage from "./routes/TeamManage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/member/signup" component={SignUp}/>
         <Route exact path="/member/mypage" component={Mypage}/>
         <Route exact path="/team/regist" component={TeamRegist}/>
+        <Route exact path="/team/manage/:teamNo" component={TeamManage}/>
     </HashRouter>
   );
 }

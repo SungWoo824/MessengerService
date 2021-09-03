@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TeamMemberRepository extends JpaRepository<TeamMember,Long> {
     List<TeamMember> findByMember_MemberNo(Long memberNo);
+    TeamMember findByMember_MemberNoAndAndTeam_TeamNo(Long memberNo, Long teamNo);
 }

@@ -27,6 +27,7 @@ function Mypage () {
                 const teamListUrl =response.data.data.memberNo;
                 axios.get("http://localhost:8080/team/teamList?memberNo="+teamListUrl)
                     .then(function (teamResponse){
+                        console.log(teamResponse.data.data);
                         setTeamList(teamResponse.data.data);
                         setTeamLoading(false);
                     });
@@ -60,6 +61,7 @@ function Mypage () {
                                     (teamList.map(teamMember => (
                                         <MypageTeamListComponent
                                             key={teamMember.team.teamNo}
+                                            teamNo = {teamMember.team.teamNo}
                                             teamName={teamMember.team.teamName}
                                             teamDomain={teamMember.team.teamDomain}
                                             teamMemberJobPosition={teamMember.teamMemberJobPosition}

@@ -30,6 +30,13 @@ public class TeamController {
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }
 
+    @GetMapping("/modify/teamInfo")
+    public ResponseEntity<ResponseMessage> getTeamInfo(ServletRequest request, @RequestParam Long teamNo){
+        ResponseMessage responseMessage = teamService.getTeamInfo(request,teamNo);
+
+        return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+    }
+
     @PutMapping("/modify/setting")
     public ResponseEntity<ResponseMessage> modifyTeamSetting(){
 

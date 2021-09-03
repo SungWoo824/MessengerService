@@ -9,6 +9,7 @@ import com.sw.messenger.repository.TeamMemberRepository;
 import com.sw.messenger.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletRequest;
@@ -49,6 +50,18 @@ public class TeamServiceImpl implements TeamService{
         List<TeamMember> teamMemberList = teamMemberRepository.findByMember_MemberNo(memberNo);
 
         return new ResponseMessage(teamMemberList, "팀 목록 출력에 성공하였습니다.");
+    }
+
+    @Override
+    public ResponseMessage getTeamInfo(ServletRequest request, Long teamNo) {
+        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
+        Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
+        TeamMember teamMember = teamMemberRepository.findByMember_MemberNoAndAndTeam_TeamNo(member.getMemberNo(), teamNo);
+        if (teamMember==null){
+            throw new AccessDeniedException("해당팀에 대한 권한이 없습니다.");
+        }
+
+        return new ResponseMessage(teamMember, "팀 정보를 불러왔습니다.");
     }
 
     @Override
