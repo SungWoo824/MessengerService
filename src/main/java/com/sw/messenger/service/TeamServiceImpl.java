@@ -27,13 +27,12 @@ public class TeamServiceImpl implements TeamService{
     private JwtTokenProvider jwtTokenProvider;
 
     @Override
-    public ResponseMessage registTeam(ServletRequest request, Team team) {
+    public ResponseMessage registTeam(Team team, Member member) {
         if(teamRepository.findByTeamDomain(team.getTeamDomain())!=null){
             throw new DuplicateKeyException("이미 존재하는 팀도메인 입니다.");
         }
         Team saveTeam = teamRepository.save(team);
-        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
-        Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
+
         TeamMember teamMember = new TeamMember();
         teamMember.setTeam(saveTeam);
         teamMember.setMember(member);
