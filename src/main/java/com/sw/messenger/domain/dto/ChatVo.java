@@ -12,4 +12,5 @@ public class ChatVo {
     private String chat_content,chat_file_type;
     private int status;//0(enter), 1(exit), 2(message), 4 (file)
     private int chat_status;
+    private String timeStamp;
 }
