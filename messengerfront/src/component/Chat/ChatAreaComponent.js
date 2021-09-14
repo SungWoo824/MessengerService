@@ -1,7 +1,30 @@
 import React from "react";
+import SockJsClient from "react-stomp";
+import ChatApi from "../../lib/ChatApi";
 
 function ChatAreaComponent(){
+    const [messages, setMessages] = useState([]);
+    const [user, setUser] = useState(null);
 
+    const onMessageReceived = (msg) =>{
+        console.log("New Message Received ! ", msg);
+        setMessages(messages.concat(msg));
+    };
+
+    const handleLoginSubmit = (name) => {
+        setUser({name: name, color : randomColor() });
+    }
+
+    const handleMessageSubmit = (msg) => {
+        ChatApi
+            .sendMessage(user.name, msg)
+            .then((res) => {
+                console.log("sent", res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
     return(
         <div>
             <div className="chat-wrap">
