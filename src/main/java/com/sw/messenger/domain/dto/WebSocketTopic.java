@@ -23,7 +23,7 @@ public class WebSocketTopic {
     }
 
     //방에 있는 인원에게 메시지를 전송하는 메소드
-    public void sendMessage(ChatVo chatVo) throws IOException {
+    public void sendMessages(ChatVo chatVo) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(chatVo);
         TextMessage message = new TextMessage(json);
