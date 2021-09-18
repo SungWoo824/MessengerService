@@ -1,8 +1,10 @@
 package com.sw.messenger.domain;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Table(name = "chat")
 @Entity
@@ -18,8 +20,9 @@ public class Chat {
     @Column(name = "chat_content")
     private String chatContent;
 
+    @CreationTimestamp
     @Column(name = "chat_time")
-    private String chatTime;
+    private LocalDateTime chatTime;
 
     @Column(name = "chat_status")
     private int chatStatus;
