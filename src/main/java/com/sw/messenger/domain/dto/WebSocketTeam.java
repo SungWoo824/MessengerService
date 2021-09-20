@@ -45,13 +45,13 @@ public class WebSocketTeam {
             if(topic_no==chatVo.getTopic_no()) {
                 if(chatVo.getStatus()!=4) {
                     chatVo.setStatus(2);
-                    topicList.get(topic_no).sendMessage(chatVo);
+                    topicList.get(topic_no).sendMessages(chatVo);
                 }else {
-                    topicList.get(topic_no).sendMessage(chatVo);
+                    topicList.get(topic_no).sendMessages(chatVo);
                 }
             }else {
                 chatVo.setStatus(3);
-                topicList.get(topic_no).sendMessage(chatVo);
+                topicList.get(topic_no).sendMessages(chatVo);
             }
         }
 
