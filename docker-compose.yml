@@ -28,9 +28,10 @@ services:
      - "1099:1099"
    environment:
      HOSTNAME_COMMAND: "docker info | grep ^Name: | cut -d' ' -f 2"
+#     HOSTNAME_COMMAND: "localhost"
      PORT_COMMAND: "docker port `hostname` 9094 | cut -d: -f 2"
-     KAFKA_ADVERTISED_LISTENERS: INSIDE://:9092,OUTSIDE://_{HOSTNAME_COMMAND}:_{PORT_COMMAND}
-     KAFKA_LISTENERS: INSIDE://:9092,OUTSIDE://:9094
+     KAFKA_ADVERTISED_LISTENERS: INSIDE://:9094,OUTSIDE://_{HOSTNAME_COMMAND}:_{PORT_COMMAND}
+     KAFKA_LISTENERS: INSIDE://:9094,OUTSIDE://:9094
      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -42,25 +43,25 @@ services:
    image: wurstmeister/kafka:2.12-2.2.0
    command: >
      bash -c "until kafka-topics.sh --zookeeper zookeeper:2181 --create --topic replicated-topic --partitions 3 --replication-factor 1 --if-not-exists; do echo \"Waiting for Kafka to be ready..\"; done
-     && kafka-producer-perf-test.sh --topic kafka-chat --num-records 10000000 --record-size 10 --throughput 1000 --producer-props bootstrap.servers=kafka:9092"
+     && kafka-producer-perf-test.sh --topic kafka-chat --num-records 10000000 --record-size 10 --throughput 1000 --producer-props bootstrap.servers=kafka:9094"
  # each kafka-consumer-test has its own consumer.id so it can be differentiated by consumer group information easily.
  consumer-group1-consumer1:
    image: wurstmeister/kafka:2.12-2.2.0
    command: >
      bash -c "until kafka-topics.sh --zookeeper zookeeper:2181 --create --topic replicated-topic --partitions 3 --replication-factor 1 --if-not-exists; do echo \"Waiting for Kafka to be ready..\"; done
-     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-1 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9092 > /dev/null"
+     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-1 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9094 > /dev/null"
  consumer-group1-consumer2:
    image: wurstmeister/kafka:2.12-2.2.0
    command: >
      bash -c "until kafka-topics.sh --zookeeper zookeeper:2181 --create --topic replicated-topic --partitions 3 --replication-factor 1 --if-not-exists; do echo \"Waiting for Kafka to be ready..\"; done
-     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-2 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9092 > /dev/null"
+     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-2 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9094 > /dev/null"
  consumer-group1-consumer3:
    image: wurstmeister/kafka:2.12-2.2.0
    command: >
      bash -c "until kafka-topics.sh --zookeeper zookeeper:2181 --create --topic replicated-topic --partitions 3 --replication-factor 1 --if-not-exists; do echo \"Waiting for Kafka to be ready..\"; done
-     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-3 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9092 > /dev/null"
+     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group --consumer-property client.id=test-client-id-3 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9094 > /dev/null"
  consumer-group2-consumer1:
    image: wurstmeister/kafka:2.12-2.2.0
    command: >
      bash -c "until kafka-topics.sh --zookeeper zookeeper:2181 --create --topic replicated-topic --partitions 3 --replication-factor 1 --if-not-exists; do echo \"Waiting for Kafka to be ready..\"; done
-     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group-two --consumer-property client.id=test-client-two-id-1 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9092 > /dev/null"
+     && kafka-console-consumer.sh --consumer-property group.id=test-consumer-group-two --consumer-property client.id=test-client-two-id-1 --consumer-property enable.auto.commit=true --topic kafka-chat --bootstrap-server kafka:9094 > /dev/null"
