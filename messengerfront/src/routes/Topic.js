@@ -1,15 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import ChatTeamModalComponent from "../component/Chat/ChatTeamModalComponent";
+import ChatTeamModalComponent from "../component/Chat/Modal/ChatTeamModalComponent";
 import ChatLeftSideComponent from "../component/Chat/ChatLeftSideComponent";
 import ChatTopNavComponent from "../component/Chat/ChatTopNavComponent";
 import ChatAreaComponent from "../component/Chat/ChatAreaComponent";
-import TeamInviteComponent from "../component/Chat/TeamInviteComponent";
-import TopicCreateModalComponent from "../component/Chat/TopicCreateModalComponent";
+import TeamInviteComponent from "../component/Chat/Modal/TeamInviteComponent";
+import TopicCreateModalComponent from "../component/Chat/Modal/TopicCreateModalComponent";
 import TopicMemberListComponent from "../component/Chat/TopicMemberListComponent";
-import TopicModifyModalComponent from "../component/Chat/TopicModifyModalComponent";
-import TopicExitModalComponent from "../component/Chat/TopicExitModalComponent";
-import TopicInviteModalComponent from "../component/Chat/TopicInviteModalComponent";
+import TopicModifyModalComponent from "../component/Chat/Modal/TopicModifyModalComponent";
+import TopicExitModalComponent from "../component/Chat/Modal/TopicExitModalComponent";
+import TopicInviteModalComponent from "../component/Chat/Modal/TopicInviteModalComponent";
 
 function Topic() {
     return (
