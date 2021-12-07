@@ -23,20 +23,20 @@ function TopicExitModalComponent(){
                         <hr/>
                         <input type="hidden" name="topic_no" value="${param.topic_no }"/>
                         <input type="hidden" name="team_no" value="${param.team_no }"/>
-                        <c:forEach var="tmList" items="${topicMemberList}">
-                            <c:choose>
-                                <c:when test="${tmList.member_no eq sessionScope.member_no}">
+                        {/*<c:forEach var="tmList" items="${topicMemberList}">*/}
+                        {/*    <c:choose>*/}
+                        {/*        <c:when test="${tmList.member_no eq sessionScope.member_no}">*/}
                                     <input type="checkbox" disabled/>
-                                </c:when>
-                                <c:otherwise>
+                                {/*</c:when>*/}
+                                {/*<c:otherwise>*/}
                                     <input type="checkbox" name="member_no" value="${tmList.member_no }"/>
-                                </c:otherwise>
-                            </c:choose>
+                                {/*</c:otherwise>*/}
+                            {/*</c:choose>*/}
                             <span>
                                           tmList.member_no/tmList.member_name-tmList.member_email(tmList.topic_member_position)
                                       </span>
                             <br/>
-                        </c:forEach>
+                        {/*</c:forEach>*/}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">닫기</button>

@@ -8,6 +8,7 @@ import Mypage from "./routes/Mypage";
 import TeamRegist from "./routes/TeamRegist";
 import './App.css';
 import TeamManage from "./routes/TeamManage";
+import Topic from "./routes/Topic";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/member/mypage" component={Mypage}/>
         <Route exact path="/team/regist" component={TeamRegist}/>
         <Route exact path="/team/manage/:teamNo" component={TeamManage}/>
+        <Route exact path="/team/:teamDomain/:topicNo" component={Topic}/>
     </HashRouter>
   );
 }

@@ -25,20 +25,20 @@ function ChatTeamModalComponent(){
                         <button type="button">
                             찾기
                         </button>
-                        <c:forEach items="${memberList}" var="memberListVO">
+                        {/*<c:forEach items="${memberList}" var="memberListVO">*/}
                             <div className="dropdown-item">
-                                <c:out value="${memberListVO.member_name}">
+                                {/*<c:out value="${memberListVO.member_name}">*/}
                                     memberListVO.member_name
-                                </c:out>
+                                {/*</c:out>*/}
                                 <span className="badge badge-pill badge-primary">
                                               memberListVO.member_position
                                           </span>
-                                <c:out value="${memberListVO.member_email}">
+                                {/*<c:out value="${memberListVO.member_email}">*/}
                                     memberListVO.member_email
-                                </c:out>
+                                {/*</c:out>*/}
                                 <br/>
                             </div>
-                        </c:forEach>
+                        {/*</c:forEach>*/}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">

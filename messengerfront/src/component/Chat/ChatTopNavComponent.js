@@ -61,7 +61,7 @@ function ChatTopNavComponent() {
                       </a>
 
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                          <Link to={} className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
+                          <Link to="" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
                               <div>
                                   <span>
                                       팀 멤버 전체 보기
@@ -80,17 +80,17 @@ function ChatTopNavComponent() {
                           </a>
                       </div>
                   </li>
-                  <!-- 팀, 토픽 기능 종료-->
 
 
-                  <!-- Nav Item - Messages -->
+
+
                   <li className="nav-item dropdown no-arrow mx-1">
                       <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-user-plus fa-lg">
 
                           </i>
                       </a>
-                      <!-- Dropdown - Messages -->
+
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                           {/*토픽소유자*/}
                           <div>
@@ -109,27 +109,27 @@ function ChatTopNavComponent() {
                                       <div className="text-truncate">토픽 정보 변경</div>
                                   </div>
                               </a>
-                              <c:if test="${topicList.size() > 1}">
+                              {/*<c:if test="${topicList.size() > 1}">*/}
                                   <a className="dropdown-item d-flex align-items-center" id="topic-delete-btn" href="deletetopic?topic_no=${param.topic_no }&team_no=${param.team_no}">
                                       <div>
                                           <div className="text-truncate">토픽 삭제하기</div>
                                       </div>
                                   </a>
-                                  <c:if test="${topicMemberList.size() > 1 }">
+                                  {/*<c:if test="${topicMemberList.size() > 1 }">*/}
                                       <a className="dropdown-item d-flex align-items-center topic-out-btn" data-toggle="modal" data-target="#topicMasterChange">
                                           <div>
                                               <div className="text-truncate">토픽 나가기</div>
                                           </div>
                                       </a>
-                                  </c:if>
-                                  <c:if test="${topicMemberList.size() < 2 }">
+                                  {/*</c:if>*/}
+                                  {/*<c:if test="${topicMemberList.size() < 2 }">*/}
                                       <a className="dropdown-item d-flex align-items-center topic-out-btn" href="outtopic?topic_no=${param.topic_no }&member_no=${sessionScope.member_no}">
                                           <div>
                                               <div className="text-truncate">토픽 나가기</div>
                                           </div>
                                       </a>
-                                  </c:if>
-                              </c:if>
+                                  {/*</c:if>*/}
+                              {/*</c:if>*/}
                           </div>
 
                           {/*other*/}
@@ -157,13 +157,13 @@ function ChatTopNavComponent() {
 
                   </li>
 
-                  <!-- Nav Item - User Information -->
+
                   <li className="nav-item dropdown no-arrow">
                       <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span className="mr-2 d-none d-lg-inline text-gray-600 small">${member_name }</span>
+                          <span className="mr-2 d-none d-lg-inline text-gray-600 small">member_name</span>
                           <img className="img-profile rounded-circle" src=''/>
                       </a>
-                      <!-- Dropdown - User Information -->
+
                       <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                           <a className="dropdown-item" href="/member/modify">
                               <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400">

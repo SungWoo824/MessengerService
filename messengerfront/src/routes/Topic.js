@@ -10,6 +10,7 @@ import TopicMemberListComponent from "../component/Chat/TopicMemberListComponent
 import TopicModifyModalComponent from "../component/Chat/Modal/TopicModifyModalComponent";
 import TopicExitModalComponent from "../component/Chat/Modal/TopicExitModalComponent";
 import TopicInviteModalComponent from "../component/Chat/Modal/TopicInviteModalComponent";
+import "./Chat.css";
 
 function Topic() {
     return (

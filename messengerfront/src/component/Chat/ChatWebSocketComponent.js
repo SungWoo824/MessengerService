@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import SockJsClient from "react-stomp";
 import ChatApi from "../../lib/ChatApi";
 
@@ -10,10 +10,6 @@ function ChatWebSocketComponent() {
         console.log("New Message Received ! ", msg);
         setMessages(messages.concat(msg));
     };
-
-    const handleLoginSubmit = (name) => {
-        setUser({name: name, color : randomColor() });
-    }
 
     const handleMessageSubmit = (msg) => {
         ChatApi

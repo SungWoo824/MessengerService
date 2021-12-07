@@ -38,17 +38,16 @@ function ChatLeftSideComponent(){
                     </a>
                     <div id="collapsePages" className="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
-                            <!--             <h6 className="collapse-header">Login Screens:</h6> -->
-                            <c:forEach items="${topicList}" var="topicListDto" varStatus="status" >
+                            {/*<c:forEach items="${topicList}" var="topicListDto" varStatus="status" >*/}
                                 <a className="collapse-item" href="/chat/topic_main?team_no=${param.team_no}&topic_no=${topicListDto.topic_no}">
                                     topicListDto.topic_name
                                     <span className="badge badge-primary badge-pill ${topicListDto.topic_no}">
-                    <c:if test="${memberChatCount[status.index].count ne 0 && topicListDto.topic_no ne param.topic_no}">
-                        memberChatCount[status.index].count
-                    </c:if>
-                    </span>
+                                        {/*<c:if test="${memberChatCount[status.index].count ne 0 && topicListDto.topic_no ne param.topic_no}">*/}
+                                            memberChatCount[status.index].count
+                                        {/*</c:if>*/}
+                                    </span>
                                 </a>
-                            </c:forEach>
+                            {/*</c:forEach>*/}
                             <div className="collapse-divider">
 
                             </div>

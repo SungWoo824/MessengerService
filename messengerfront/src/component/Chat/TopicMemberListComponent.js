@@ -17,25 +17,25 @@ function TopicMemberListComponent(){
                     </div>
                     <div className="modal-body">
                         {/*// <!-- 내가 토픽 소유자일 때 나를 제외하고 내보내기 할 수 있는 기능 -->*/}
-                        <c:forEach var="tmList" items="${topicMemberList}">
+                        {/*<c:forEach var="tmList" items="${topicMemberList}">*/}
                             tmList.member_name
-                            <c:if test="${tmList.topic_member_position eq '토픽소유자'}">
+                            {/*<c:if test="${tmList.topic_member_position eq '토픽소유자'}">*/}
                                 <span style="color:#2196f3">(tmList.topic_member_position)</span>
-                            </c:if>
+                            {/*</c:if>*/}
                             [tmList.member_email]
-                            <c:if
-                                test="${tmaster.topic_member_position eq '토픽소유자' and sessionScope.member_no ne tmList.member_no}">
+                            {/*<c:if*/}
+                            {/*    test="${tmaster.topic_member_position eq '토픽소유자' and sessionScope.member_no ne tmList.member_no}">*/}
                                 <a style="color:red"
                                    href="outtopic?topic_no=${param.topic_no }&member_no=${tmList.member_no}&team_no=${tmList.team_no}">
                                     내보내기
                                 </a>
                                 <br/>
-                            </c:if>
-                            <c:if
-                                test="${tmaster.topic_member_position ne '토픽소유자' or sessionScope.member_no eq tmList.member_no}">
+                            {/*</c:if>*/}
+                            {/*<c:if*/}
+                            {/*    test="${tmaster.topic_member_position ne '토픽소유자' or sessionScope.member_no eq tmList.member_no}">*/}
                                 <br/>
-                            </c:if>
-                        </c:forEach>
+                            {/*</c:if>*/}
+                        {/*</c:forEach>*/}
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">

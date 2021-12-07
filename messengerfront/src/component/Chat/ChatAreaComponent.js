@@ -9,13 +9,11 @@ function ChatAreaComponent(){
             <div className="chat-wrap">
                 <div className="chat-aside">
                     <div className="chat-menu-bar">
-                        <!-- 채팅 창 -->
-                        <div className="container-fluid" style="overflow:auto">
-
+                        <div className="container-fluid">
                             <article className="message-wrap">
-                                <!-- 메세지 결과 창 -->
+                                {/*메세지 결과 창*/}
                                 <ChatWebSocketComponent/>
-                                <!-- 전송 -->
+                                {/*전송*/}
                                 <ChatSendFormComponent/>
                             </article>
                         </div>
