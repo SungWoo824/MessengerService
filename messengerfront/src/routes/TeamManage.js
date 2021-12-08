@@ -9,7 +9,7 @@ function TeamManage() {
     let [teamInfo, setTeamInfo] = useState([]);
     const {teamNo} = useParams();
     useEffect(() => {
-        axios.get("http://localhost:8080/team/modify/teamInfo?teamNo="+teamNo)
+        axios.get("http://localhost:8080/team/modify/teamInfo?teamNo="+ {teamNo})
             .then(function (response){
                 if (response.data.data === 401){
                     console.log("Not allow!!!");
@@ -19,7 +19,7 @@ function TeamManage() {
                     setIsLoading(false);
                 }
             });
-    },[]);
+    },[teamNo]);
 
     return (
         <div>

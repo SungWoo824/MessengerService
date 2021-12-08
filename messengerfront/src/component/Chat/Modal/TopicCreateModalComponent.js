@@ -12,7 +12,7 @@ function TopicCreateModalComponent(){
                         </button>
                     </div>
                     <div className="modal-body">
-                        <input type="hidden" name="team_no" value="${param.team_no}"/>
+                        <input type="hidden" name="team_no" value=""/>
                         이름 : <input type="text" name="topic_name"/>
                         <span>
 

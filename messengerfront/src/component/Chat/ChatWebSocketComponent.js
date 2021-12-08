@@ -1,10 +1,12 @@
 import React, {useState} from "react";
 import SockJsClient from "react-stomp";
 import ChatApi from "../../lib/ChatApi";
+import {AuthenticationService} from "../../lib/Authentication";
 
 function ChatWebSocketComponent() {
     const [messages, setMessages] = useState([]);
-    const [user, setUser] = useState(null);
+    const authenticationService = new AuthenticationService();
+    const user = authenticationService.getLoggedInUserName();
 
     const onMessageReceived = (msg) =>{
         console.log("New Message Received ! ", msg);
@@ -31,8 +33,8 @@ function ChatWebSocketComponent() {
                 onMessage={(msg) => onMessageReceived(msg)}
                 debug={false}
             />
-            <div className="message" style="text-align: left">
-                <div id="chat-content"  style="display: flex; flex-direction: column-reverse;">
+            <div className="message">
+                <div id="chat-content">
 
 
                 </div>

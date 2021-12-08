@@ -6,6 +6,7 @@ function ChatSendFormComponent() {
     const [inputMessage, setInputMessage] = useState('');
     const handleInputMessage = (e) => {
         setInputMessage(e.target.value);
+        console.log(inputMessage);
     }
     const handleMessageSubmit = (msg) => {
         chatApi.sendMessage(authentication.getLoggedInUserName(),msg)

@@ -16,8 +16,8 @@ function TeamInviteComponent(){
                         <input className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                name="cert_email" type="email" placeholder="Enter email"/>
                         <br/>
-                        <input type="hidden" value="${param.team_no}" name="team_no"/>
-                        <input type="hidden" value="${param.topic_no}" name="topic_no"/>
+                        <input type="hidden" value="" name="team_no"/>
+                        <input type="hidden" value="" name="topic_no"/>
                         <br/>
                     </div>
                     <div className="modal-footer">

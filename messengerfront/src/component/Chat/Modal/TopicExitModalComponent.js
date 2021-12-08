@@ -21,15 +21,15 @@ function TopicExitModalComponent(){
                                   </span>
                         <br/>
                         <hr/>
-                        <input type="hidden" name="topic_no" value="${param.topic_no }"/>
-                        <input type="hidden" name="team_no" value="${param.team_no }"/>
+                        <input type="hidden" name="topic_no" value=""/>
+                        <input type="hidden" name="team_no" value=""/>
                         {/*<c:forEach var="tmList" items="${topicMemberList}">*/}
                         {/*    <c:choose>*/}
                         {/*        <c:when test="${tmList.member_no eq sessionScope.member_no}">*/}
                                     <input type="checkbox" disabled/>
                                 {/*</c:when>*/}
                                 {/*<c:otherwise>*/}
-                                    <input type="checkbox" name="member_no" value="${tmList.member_no }"/>
+                                    <input type="checkbox" name="member_no" value=""/>
                                 {/*</c:otherwise>*/}
                             {/*</c:choose>*/}
                             <span>

@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function TopicMemberListComponent(){
     return(
@@ -20,15 +21,14 @@ function TopicMemberListComponent(){
                         {/*<c:forEach var="tmList" items="${topicMemberList}">*/}
                             tmList.member_name
                             {/*<c:if test="${tmList.topic_member_position eq '토픽소유자'}">*/}
-                                <span style="color:#2196f3">(tmList.topic_member_position)</span>
+                                <span className="topic-email-span">(tmList.topic_member_position)</span>
                             {/*</c:if>*/}
                             [tmList.member_email]
                             {/*<c:if*/}
                             {/*    test="${tmaster.topic_member_position eq '토픽소유자' and sessionScope.member_no ne tmList.member_no}">*/}
-                                <a style="color:red"
-                                   href="outtopic?topic_no=${param.topic_no }&member_no=${tmList.member_no}&team_no=${tmList.team_no}">
+                                <Link href="outtopic?topic_no=&member_no=&team_no=">
                                     내보내기
-                                </a>
+                                </Link>
                                 <br/>
                             {/*</c:if>*/}
                             {/*<c:if*/}

@@ -6,6 +6,7 @@
     height: 70px;
     width: 100%;
     background-color: #2196f3;
+    cursor:pointer;
 }
 
 .newline {
@@ -25,7 +26,9 @@
     left: 20px;
     top: 10px;
 }
-
+.logo-back img {
+    width:44px;
+}
 
 .chat-img {
     left: 0;
@@ -139,6 +142,8 @@
 
 #chat-content {
     overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #chat-content > div {
@@ -159,7 +164,7 @@
 
 .message {
     height: 721px;
-
+    text-align: left;
 }
 
 .msg-profile {
@@ -240,4 +245,23 @@
     right: 0;
 }
 
+.topic-create-btn {
+    color:#666
+}
+.topic-create-li {
+    color:#2196f3
+}
+.sidebar-brand-text{
+    top: 1.5rem;
+    position: absolute;
+    font-size:20px;
+    left:86px;
+    color:#fff;
+}
+.topic-out-link{
+    color:red;
+}
+.topic-email-span{
+    color:#2196f3;
+}
 /*모달 css 종료*/
