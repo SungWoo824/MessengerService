@@ -59,3 +59,4 @@ function ChatContentComponent({id, chatNo, memberName, chatContent, chatFileType
         </div>
     )
 }
+export default ChatContentComponent;

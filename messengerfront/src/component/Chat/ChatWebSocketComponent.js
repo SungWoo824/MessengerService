@@ -1,27 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import SockJsClient from "react-stomp";
 import ChatApi from "../../lib/ChatApi";
 import {AuthenticationService} from "../../lib/Authentication";
+import ChatContentComponent from "./ChatContentComponent";
+
 
 function ChatWebSocketComponent() {
     const [messages, setMessages] = useState([]);
     const authenticationService = new AuthenticationService();
     const user = authenticationService.getLoggedInUserName();
-
+    const chatContentArea = useRef();
     const onMessageReceived = (msg) =>{
         console.log("New Message Received ! ", msg);
         setMessages(messages.concat(msg));
-    };
-
-    const handleMessageSubmit = (msg) => {
-        ChatApi
-            .sendMessage(user.name, msg)
-            .then((res) => {
-                console.log("sent", res);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
+        chatContentArea.current;
     };
     return (
         <div>
@@ -34,9 +26,7 @@ function ChatWebSocketComponent() {
                 debug={false}
             />
             <div className="message">
-                <div id="chat-content">
-
-
+                <div id="chat-content" ref={chatContentArea}>
                 </div>
             </div>
         </div>
