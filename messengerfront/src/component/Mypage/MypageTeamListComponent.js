@@ -35,7 +35,7 @@ function MypageTeamListComponent({teamNo, teamName, teamDomain, teamMemberJobPos
 
 
                     <div className="mypage-team-div">
-                        <Link to={"/team/"+teamDomain+"/"} className="btn btn-outline-primary btn-lg">
+                        <Link to={"/team/"+teamDomain} className="btn btn-outline-primary btn-lg">
                             이동하기
                         </Link>
                     </div>

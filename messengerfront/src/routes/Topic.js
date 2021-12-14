@@ -22,7 +22,7 @@ function Topic() {
                   {/*채팅 부분*/}
                   <ChatAreaComponent/>
                   {/*팀  모달 시작*/}
-                  <ChatTeamModalComponent/>
+                  {/*<ChatTeamModalComponent/>*/}
                   {/*// <!-- 팀 리스트end -->*/}
 
                   {/*// <!-- 팀 초대 -->*/}

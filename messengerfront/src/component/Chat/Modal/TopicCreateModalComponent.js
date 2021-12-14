@@ -20,7 +20,7 @@ function TopicCreateModalComponent(){
                         <br/>
                         <br/>
                         공개여부 :
-                        <input type="radio" name="topic_confidential" value="1" checked="checked"/> 비공개
+                        <input type="radio" name="topic_confidential" value="1"/> 비공개
                         <input type="radio" name="topic_confidential" value="0"/> 공개
                         <br/><br/>
                         토픽 설명 :

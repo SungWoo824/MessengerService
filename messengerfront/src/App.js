@@ -19,7 +19,7 @@ function App() {
         <Route exact path="/member/mypage" component={Mypage}/>
         <Route exact path="/team/regist" component={TeamRegist}/>
         <Route exact path="/team/manage/:teamNo" component={TeamManage}/>
-        <Route exact path="/team/:teamDomain/:topicNo" component={Topic}/>
+        <Route path="/team/:teamDomain?/:topicNo?" component={Topic}/>
     </HashRouter>
   );
 }

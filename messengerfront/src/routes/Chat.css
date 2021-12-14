@@ -265,3 +265,7 @@
     color:#2196f3;
 }
 /*모달 css 종료*/
+.chat-card{
+    width: 20rem;
+    height: 15rem;
+}

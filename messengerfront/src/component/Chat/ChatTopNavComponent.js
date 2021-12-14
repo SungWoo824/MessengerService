@@ -30,7 +30,7 @@ function ChatTopNavComponent() {
 
               <ul className="navbar-nav ml-auto">
                   <li className="nav-item dropdown no-arrow d-sm-none">
-                      <Link className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <Link className="nav-link dropdown-toggle" to="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-search fa-fw">
 
                           </i>
@@ -51,7 +51,7 @@ function ChatTopNavComponent() {
 
                   {/*팀, 토픽 기능 시작*/}
                   <li className="nav-item dropdown no-arrow mx-1">
-                      <Link className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <Link className="nav-link dropdown-toggle" to="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-user-friends fa-lg">
 
                           </i>
@@ -61,7 +61,7 @@ function ChatTopNavComponent() {
                       </Link>
 
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                          <Link to="" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
+                          <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
                               <div>
                                   <span>
                                       팀 멤버 전체 보기
@@ -71,7 +71,7 @@ function ChatTopNavComponent() {
                                   </span>
                               </div>
                           </Link>
-                          <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTeam">
+                          <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTeam">
                               <div>
                                   <span>
                                       팀 초대하기
@@ -85,7 +85,7 @@ function ChatTopNavComponent() {
 
 
                   <li className="nav-item dropdown no-arrow mx-1">
-                      <Link className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <Link className="nav-link dropdown-toggle" to="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-user-plus fa-lg">
 
                           </i>
@@ -94,36 +94,36 @@ function ChatTopNavComponent() {
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                           {/*토픽소유자*/}
                           <div>
-                              <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
+                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
                                   <div>
                                       <div className="text-truncate">토픽 멤버 보기</div>
                                   </div>
                               </Link>
-                              <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
+                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
                                   <div>
                                       <div className="text-truncate">토픽 초대하기</div>
                                   </div>
                               </Link>
-                              <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#editTopic">
+                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#editTopic">
                                   <div>
                                       <div className="text-truncate">토픽 정보 변경</div>
                                   </div>
                               </Link>
                               {/*<c:if test="${topicList.size() > 1}">*/}
-                                  <Link className="dropdown-item d-flex align-items-center" id="topic-delete-btn" href="deletetopic?topic_no=&team_no=">
+                                  <Link to="#" className="dropdown-item d-flex align-items-center" id="topic-delete-btn">
                                       <div>
                                           <div className="text-truncate">토픽 삭제하기</div>
                                       </div>
                                   </Link>
                                   {/*<c:if test="${topicMemberList.size() > 1 }">*/}
-                                      <Link className="dropdown-item d-flex align-items-center topic-out-btn" data-toggle="modal" data-target="#topicMasterChange">
+                                      <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn" data-toggle="modal" data-target="#topicMasterChange">
                                           <div>
                                               <div className="text-truncate">토픽 나가기</div>
                                           </div>
                                       </Link>
                                   {/*</c:if>*/}
                                   {/*<c:if test="${topicMemberList.size() < 2 }">*/}
-                                      <Link className="dropdown-item d-flex align-items-center topic-out-btn" href="outtopic?topic_no=&member_no=">
+                                      <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn">
                                           <div>
                                               <div className="text-truncate">토픽 나가기</div>
                                           </div>
@@ -134,17 +134,17 @@ function ChatTopNavComponent() {
 
                           {/*other*/}
                           <div>
-                              <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
+                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
                                   <div>
                                       <div className="text-truncate">토픽 멤버 보기</div>
                                   </div>
                               </Link>
-                              <Link className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
+                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
                                   <div>
                                       <div className="text-truncate">토픽 초대하기</div>
                                   </div>
                               </Link>
-                              <Link className="dropdown-item d-flex align-items-center topic-out-btn" href="outtopic?topic_no=&member_no=">
+                              <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn">
                                   <div>
                                       <div className="text-truncate">토픽 나가기</div>
                                   </div>
@@ -159,13 +159,13 @@ function ChatTopNavComponent() {
 
 
                   <li className="nav-item dropdown no-arrow">
-                      <Link className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <Link to="#" className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span className="mr-2 d-none d-lg-inline text-gray-600 small">member_name</span>
                           <img className="img-profile rounded-circle" src='' alt=""/>
                       </Link>
 
                       <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                          <Link className="dropdown-item" href="/member/modify">
+                          <Link to="#" className="dropdown-item">
                               <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400">
 
                               </i>
@@ -174,7 +174,7 @@ function ChatTopNavComponent() {
                           <div className="dropdown-divider">
 
                           </div>
-                          <Link className="dropdown-item" href="/member/signout" >
+                          <Link to="#" className="dropdown-item">
                               <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">
 
                               </i>

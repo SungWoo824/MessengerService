@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 function ChatContentComponent({id, chatNo, memberName, chatContent, chatFileType, chatStatus}) {
     return (
@@ -22,32 +23,32 @@ function ChatContentComponent({id, chatNo, memberName, chatContent, chatFileType
 
                 <div className="msg-con">
                     <span>{memberName}</span>
-                    <div className="card border-primary mb-3 admin-card" style="width: 20rem; height: 15rem;">
+                    <div className="card border-primary mb-3 admin-card chat-card">
                         <div className="card-body admin-card-body">
                             {chatFileType === "text" ?
                             (<div>
-                                <a href={"filedownload?chat_file_no="+{chatNo}}>
+                                <Link to={"filedownload?chat_file_no="+{chatNo}}>
                                     <img id="chat_dummy" src="" alt="textFileImage"/>
-                                </a>
+                                </Link>
                             </div>):
                             (chatFileType === "image" ?(
                             <div>
-                                <a href={"filedownload?chat_file_no="+{chatNo}}>
+                                <Link to={"filedownload?chat_file_no="+{chatNo}}>
                                     <img id="chat_dummy" src='' alt="imageFileImage"/>
-                                </a>
+                                </Link>
                             </div>
                             ):(
                             <div>
-                                <a href={"filedownload?chat_file_no="+{chatNo}}>
+                                <Link to={"filedownload?chat_file_no="+{chatNo}}>
                                     <img id="chat_dummy" src="" alt="otherFileImage"/>
-                                </a>
+                                </Link>
                             </div>
                             ))
                             }
                             <p className="card-text">
-                                <a href="#">
+                                <Link to="#">
 
-                                </a>
+                                </Link>
                             </p>
                         </div>
                         <div className="card-header">{chatContent}</div>

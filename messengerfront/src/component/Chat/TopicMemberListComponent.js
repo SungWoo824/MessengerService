@@ -26,7 +26,7 @@ function TopicMemberListComponent(){
                             [tmList.member_email]
                             {/*<c:if*/}
                             {/*    test="${tmaster.topic_member_position eq '토픽소유자' and sessionScope.member_no ne tmList.member_no}">*/}
-                                <Link href="outtopic?topic_no=&member_no=&team_no=">
+                                <Link to="outtopic?topic_no=&member_no=&team_no=">
                                     내보내기
                                 </Link>
                                 <br/>
