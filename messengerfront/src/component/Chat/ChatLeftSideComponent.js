@@ -6,24 +6,32 @@ function ChatLeftSideComponent(){
         <div>
             {/*왼쪽 바 시작*/}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion newline" id="accordionSidebar">
-                <div className="sidebar-brand d-flex align-items-center justify-content-center" >
+                <div className="sidebar-brand d-flex" >
                     <div className="logowrap">
                         <div className="sidebar-brand-icon logo-back">
-                            <img src="" alt="logo" />
+                            <img className="logo-icon" src="/images/logo.png" alt="logo" />
                         </div>
                         <div className="sidebar-brand-text">
                             Circle
                         </div>
                     </div>
                 </div>
+                <li className="nav-item move-to-main">
+                    <Link className="nav-link" to="/member/mypage">
+                        <div className="bg-img">
+                            <img src="/images/home-bg.png" alt="home-logo"/>
+                        </div>
+                        <span className="home-name">서클 메인</span>
+                    </Link>
+                </li>
 
-                <hr className="sidebar-divider my-0"/>
+                <hr className="sidebar-divider"/>
                 <div className="sidebar-heading">
                     <Link to="#" className="nav-link topic-new" data-toggle="modal" data-target="#newTopicCreate">
-                        <i className="fa fa-fw fa-plus topm topic-create-li">
-
-                        </i>
-                        <span className="topic-create-btn">토픽 생성하기</span>
+                        <div className="bg-img">
+                            <img src="/images/plus-bg.jpeg" alt="home-logo"/>
+                        </div>
+                        <span className="topic-create-btn home-name">토픽 생성하기</span>
                     </Link>
                 </div>
 

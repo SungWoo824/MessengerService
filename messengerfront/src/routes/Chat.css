@@ -1,14 +1,37 @@
 
 /* 채팅 탑 메뉴바 css */
 .logowrap {
-    position: absolute;
     left: 0;
     height: 70px;
-    width: 100%;
+    width: 250px;
     background-color: #2196f3;
     cursor:pointer;
 }
+.move-to-main{
+    margin-top: 1rem;
+}
+.sidebar-divider{
+    width: 250px;
+}
+.fa-plus:before {
+    content: "\002B"
+}
 
+#content-wrapper{
+    width: 250px;
+}
+.bg-img{
+    position: absolute;
+    margin-left: 5px;
+    line-height: 30px;
+}
+.bg-img img{
+    width: 30px;
+}
+.home-name{
+    line-height: 30px;
+    margin-left: 40px;
+}
 .newline {
     border-right: 1px solid #ececec;
 }
@@ -16,7 +39,9 @@
 .newborder {
     border-bottom: 1px solid #ececec;
 }
-
+.logo-icon{
+    margin: 3px;
+}
 .logo-back {
     width: 50px;
     height: 50px;
@@ -252,7 +277,7 @@
     color:#2196f3
 }
 .sidebar-brand-text{
-    top: 1.5rem;
+    line-height: 70px;
     position: absolute;
     font-size:20px;
     left:86px;
