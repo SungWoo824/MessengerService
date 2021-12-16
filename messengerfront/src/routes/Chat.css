@@ -19,6 +19,14 @@
 
 #content-wrapper{
     width: 250px;
+    background: #eeeeee;
+}
+.topic-list-area{
+    margin: 10px 10px;
+    padding: 15px;
+}
+.topic-name{
+    text : bold;
 }
 .bg-img{
     position: absolute;
@@ -30,6 +38,10 @@
 }
 .home-name{
     line-height: 30px;
+    margin-left: 40px;
+}
+.topic-icon{
+    line-height: 34px;
     margin-left: 40px;
 }
 .newline {

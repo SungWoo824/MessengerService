@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import ChatTopicListComponent from "./ChatTopicListComponent";
 
 function ChatLeftSideComponent(){
     return(
-        <div>
+        <div id="content-wrapper">
             {/*왼쪽 바 시작*/}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion newline" id="accordionSidebar">
                 <div className="sidebar-brand d-flex" >
@@ -40,23 +41,14 @@ function ChatLeftSideComponent(){
                 {/*토픽 목록 시작*/}
                 <li className="nav-item active">
                     <Link to="#" className="nav-link" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i className="fas fa-fw fa-folder">
-
-                        </i>
-                        <span>토픽</span>
+                        <div className="bg-img">
+                            <img src="/images/folder-bg.png" alt="home-logo"/>
+                        </div>
+                        <span className="topic-create-btn topic-icon">토픽</span>
                     </Link>
                     <div id="collapsePages" className="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            {/*<c:forEach items="${topicList}" var="topicListDto" varStatus="status" >*/}
-                                <Link to="#" className="collapse-item">
-                                    topicListDto.topic_name
-                                    <span className="badge badge-primary badge-pill">
-                                        {/*<c:if test="${memberChatCount[status.index].count ne 0 && topicListDto.topic_no ne param.topic_no}">*/}
-                                            memberChatCount[status.index].count
-                                        {/*</c:if>*/}
-                                    </span>
-                                </Link>
-                            {/*</c:forEach>*/}
+                        <div className="bg-white py-2 collapse-inner rounded topic-list-area">
+                            <ChatTopicListComponent/>
                             <div className="collapse-divider">
 
                             </div>

@@ -15,7 +15,7 @@ import "./Chat.css";
 function Topic() {
     return (
       <div>
-          <div id="content-wrapper" className="">
+          <div>
               <ChatLeftSideComponent/>
               <div id="content">
                   {/*<ChatTopNavComponent/>*/}
