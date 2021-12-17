@@ -67,4 +67,11 @@ public class TeamController {
 
         return null;
     }
+
+    @GetMapping("/topic")
+    public ResponseEntity<ResponseMessage> teamTopicList(ServletRequest request, @RequestParam String teamDomain){
+        ResponseMessage responseMessage = teamService.getTeamMemberTopicList(request, teamDomain);
+
+        return new ResponseEntity<>(responseMessage,HttpStatus.OK);
+    }
 }

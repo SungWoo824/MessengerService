@@ -12,11 +12,11 @@ import TopicExitModalComponent from "../component/Chat/Modal/TopicExitModalCompo
 import TopicInviteModalComponent from "../component/Chat/Modal/TopicInviteModalComponent";
 import "./Chat.css";
 
-function Topic() {
+function Topic({match}) {
     return (
       <div>
           <div>
-              <ChatLeftSideComponent/>
+              <ChatLeftSideComponent teamDomain={match.params.teamDomain}/>
               <div id="content">
                   {/*<ChatTopNavComponent/>*/}
                   {/*채팅 부분*/}

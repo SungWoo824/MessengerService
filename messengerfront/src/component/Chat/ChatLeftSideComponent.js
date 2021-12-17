@@ -1,8 +1,26 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import ChatTopicListComponent from "./ChatTopicListComponent";
+import {AuthenticationService} from "../../lib/Authentication";
+import axios from "axios";
 
-function ChatLeftSideComponent(){
+function ChatLeftSideComponent(props){
+    const authenticationService = new AuthenticationService();
+    authenticationService.setupAxiosInterceptors();
+    let [topicList, setTopicList] = useState([]);
+
+    useEffect(()=>{
+        axios.get(
+            "http://localhost:8080/team/topic?teamDomain="+props.teamDomain
+        ).then(function (res) {
+            if (res.data.data === 401) {
+                console.log("Not allow!!!");
+                return false;
+            } else {
+                setTopicList(res.data.data.topic);
+            }
+        })
+    },[]);
     return(
         <div id="content-wrapper">
             {/*왼쪽 바 시작*/}
@@ -48,7 +66,9 @@ function ChatLeftSideComponent(){
                     </Link>
                     <div id="collapsePages" className="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded topic-list-area">
-                            <ChatTopicListComponent/>
+                            {{topicList}.map(topic => {
+                                <ChatTopicListComponent/>
+                            })}
                             <div className="collapse-divider">
 
                             </div>

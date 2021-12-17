@@ -12,4 +12,5 @@ public interface TeamService {
     ResponseMessage getTeamInfo(ServletRequest request, Long TeamNo);
     ResponseMessage modifyTeamSetting(Team team);
     ResponseMessage teamOwnerSetting(Team team);
+    ResponseMessage getTeamMemberTopicList(ServletRequest request, String teamDomain);
 }

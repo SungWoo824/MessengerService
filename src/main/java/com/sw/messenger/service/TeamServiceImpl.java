@@ -4,9 +4,11 @@ import com.sw.messenger.config.security.JwtTokenProvider;
 import com.sw.messenger.domain.Member;
 import com.sw.messenger.domain.Team;
 import com.sw.messenger.domain.TeamMember;
+import com.sw.messenger.domain.TopicMember;
 import com.sw.messenger.domain.dto.ResponseMessage;
 import com.sw.messenger.repository.TeamMemberRepository;
 import com.sw.messenger.repository.TeamRepository;
+import com.sw.messenger.repository.TopicMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.access.AccessDeniedException;
@@ -25,6 +27,8 @@ public class TeamServiceImpl implements TeamService{
     private TeamMemberRepository teamMemberRepository;
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
+    @Autowired
+    private TopicMemberRepository topicMemberRepository;
 
     @Override
     public ResponseMessage registTeam(Team team, Member member) {
@@ -71,5 +75,17 @@ public class TeamServiceImpl implements TeamService{
     @Override
     public ResponseMessage teamOwnerSetting(Team team) {
         return null;
+    }
+
+    @Override
+    public ResponseMessage getTeamMemberTopicList(ServletRequest request,String teamDomain) {
+        String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
+        Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
+        TopicMember topicMember = topicMemberRepository.findByTeam_TeamDomainAndMember_MemberEmail(teamDomain,member.getMemberEmail());
+        if (topicMember==null) {
+            throw new AccessDeniedException("해당팀에 대한 권한이 없습니다.");
+        }
+
+        return new ResponseMessage(topicMember, "토픽 목록을 불러왔습니다.");
     }
 }
