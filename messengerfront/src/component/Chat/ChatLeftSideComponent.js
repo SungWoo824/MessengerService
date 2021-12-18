@@ -8,6 +8,7 @@ function ChatLeftSideComponent(props){
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
     let [topicList, setTopicList] = useState([]);
+    let [topic, setTopic] = useState({});
 
     useEffect(()=>{
         axios.get(
@@ -17,7 +18,11 @@ function ChatLeftSideComponent(props){
                 console.log("Not allow!!!");
                 return false;
             } else {
-                setTopicList(res.data.data.topic);
+                let topicResponse = res.data.data.topic;
+                topicResponse.forEach(document => {
+                    setTopic(document);
+                    setTopicList(prev => [topic, ...prev]);
+                })
             }
         })
     },[]);
