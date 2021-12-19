@@ -81,7 +81,7 @@ public class TeamServiceImpl implements TeamService{
     public ResponseMessage getTeamMemberTopicList(ServletRequest request,String teamDomain) {
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
         Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
-        TopicMember topicMember = topicMemberRepository.findByTeam_TeamDomainAndMember_MemberEmail(teamDomain,member.getMemberEmail());
+        List<TopicMember> topicMember = topicMemberRepository.findByTeam_TeamDomainAndMember_MemberEmail(teamDomain,member.getMemberEmail());
         if (topicMember==null) {
             throw new AccessDeniedException("해당팀에 대한 권한이 없습니다.");
         }

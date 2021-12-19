@@ -18,11 +18,15 @@ function ChatLeftSideComponent(props){
                 console.log("Not allow!!!");
                 return false;
             } else {
-                let topicResponse = res.data.data.topic;
-                topicResponse.forEach(document => {
-                    setTopic(document);
+                const topicResponse = res.data.data;
+                console.log(topicResponse);
+                topicResponse.forEach(elem => {
+                    setTopic(elem.topic);
+                    console.log(elem.topic);
+                    console.log(topic);
                     setTopicList(prev => [topic, ...prev]);
                 })
+                console.log(topicList);
             }
         })
     },[]);
@@ -71,9 +75,9 @@ function ChatLeftSideComponent(props){
                     </Link>
                     <div id="collapsePages" className="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded topic-list-area">
-                            {{topicList}.map(topic => {
+
                                 <ChatTopicListComponent/>
-                            })}
+
                             <div className="collapse-divider">
 
                             </div>
