@@ -1,12 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function ChatTopicListComponent() {
-
+function ChatTopicListComponent({topicNo, topicName, topicExplain, topicConfidential, teamDomain}) {
     return (
-        <Link to="#" className="collapse-item">
+        <Link to={`/team/${teamDomain}/${topicName}`} className="collapse-item">
             <strong className="topic-name">
-                topicListDto.topic_name
+                {topicName}
             </strong>
             <span className="badge badge-primary badge-pill">
                 memberChatCount[status.index].count

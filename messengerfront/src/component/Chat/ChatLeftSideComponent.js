@@ -8,7 +8,7 @@ function ChatLeftSideComponent(props){
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
     let [topicList, setTopicList] = useState([]);
-    let [topic, setTopic] = useState({});
+    let [topicLoading,setTopicLoading] = useState(true);
 
     useEffect(()=>{
         axios.get(
@@ -19,17 +19,13 @@ function ChatLeftSideComponent(props){
                 return false;
             } else {
                 const topicResponse = res.data.data;
-                console.log(topicResponse);
                 topicResponse.forEach(elem => {
-                    setTopic(elem.topic);
-                    console.log(elem.topic);
-                    console.log(topic);
-                    setTopicList(prev => [topic, ...prev]);
+                    setTopicList(prev => [elem.topic, ...prev]);
                 })
-                console.log(topicList);
+                setTopicLoading(false);
             }
         })
-    },[]);
+    },[props]);
     return(
         <div id="content-wrapper">
             {/*왼쪽 바 시작*/}
@@ -75,8 +71,20 @@ function ChatLeftSideComponent(props){
                     </Link>
                     <div id="collapsePages" className="collapse show" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded topic-list-area">
-
-                                <ChatTopicListComponent/>
+                            {topicLoading?
+                                <div></div>
+                                :
+                                (topicList.map(topic => (
+                                    <ChatTopicListComponent
+                                        key={topic.topicNo}
+                                        topicNo={topic.topicNo}
+                                        topicName={topic.topicName}
+                                        topicExplain={topic.topicExplain}
+                                        topicConfidential={topic.topicConfidential}
+                                        teamDomain = {props.teamDomain}
+                                    />
+                                )))
+                            }
 
                             <div className="collapse-divider">
 

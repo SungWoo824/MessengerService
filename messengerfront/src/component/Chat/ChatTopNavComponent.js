@@ -1,11 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Link} from "react-router-dom";
 import ChatLeftSideComponent from "./ChatLeftSideComponent";
 
-function ChatTopNavComponent() {
+function ChatTopNavComponent(props) {
+    const teamDomain = props.teamDomain;
+    const topicNo = props.topicNo;
+    console.log(teamDomain,topicNo);
+    useEffect(()=> {
+        axios.get(
+            "http://localhost:8080/topic?teamDomain="+teamDomain+"&topicNo="+topicNo
+        ).then(function(){
+
+        })
+    })
     return(
-      <div>
-          <nav className="navbar navbar-expand navbar-light bg-white topbar static-top newborder">
+      <div className="chat-top-nav">
+          <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top newborder">
               <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                   <i className="fa fa-bars">
                   </i>

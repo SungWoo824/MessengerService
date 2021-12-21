@@ -14,45 +14,43 @@ import "./Chat.css";
 
 function Topic({match}) {
     return (
-      <div>
-          <div>
-              <ChatLeftSideComponent teamDomain={match.params.teamDomain}/>
-              <div id="content">
-                  {/*<ChatTopNavComponent/>*/}
-                  {/*채팅 부분*/}
-                  {/*<ChatAreaComponent/>*/}
-                  {/*팀  모달 시작*/}
-                  {/*<ChatTeamModalComponent/>*/}
-                  {/*// <!-- 팀 리스트end -->*/}
+      <div className="collapse-item">
+          <ChatLeftSideComponent teamDomain={match.params.teamDomain}/>
+          <ChatTopNavComponent teamDomain={match.params.teamDomain} topicNo={match.params.topicNo}/>
+          <div id="content">
+              {/*채팅 부분*/}
+              {/*<ChatAreaComponent/>*/}
+              {/*팀  모달 시작*/}
+              {/*<ChatTeamModalComponent/>*/}
+              {/*// <!-- 팀 리스트end -->*/}
 
-                  {/*// <!-- 팀 초대 -->*/}
-                  {/*<TeamInviteComponent/>*/}
-                  {/*// <!-- 팀 초대 end -->*/}
-                  {/*팀  모달 종료 */}
+              {/*// <!-- 팀 초대 -->*/}
+              {/*<TeamInviteComponent/>*/}
+              {/*// <!-- 팀 초대 end -->*/}
+              {/*팀  모달 종료 */}
 
-                  {/*토픽 모달 시작*/}
-                  {/*    // <!-- 토픽 기능 모달-->*/}
-                  {/*    // <!-- 토픽생성 모달 -->*/}
-                  {/*<TopicCreateModalComponent/>*/}
-                  {/*// <!-- 새토픽 생성 end -->*/}
+              {/*토픽 모달 시작*/}
+              {/*    // <!-- 토픽 기능 모달-->*/}
+              {/*    // <!-- 토픽생성 모달 -->*/}
+              {/*<TopicCreateModalComponent/>*/}
+              {/*// <!-- 새토픽 생성 end -->*/}
 
-                  {/*// <!-- 토픽 참여자리스트 -->*/}
-                  {/*<TopicMemberListComponent/>*/}
-                  {/*// <!-- 토픽 참여자end -->*/}
+              {/*// <!-- 토픽 참여자리스트 -->*/}
+              {/*<TopicMemberListComponent/>*/}
+              {/*// <!-- 토픽 참여자end -->*/}
 
-                  {/*// <!-- 토픽 정보변경 -->*/}
-                  {/*<TopicModifyModalComponent/>*/}
-                  {/*// <!-- 토픽 정보변경end -->*/}
-
-
-                  {/*// <!-- 토픽 나가기(소유자) -->*/}
-                  {/*<TopicExitModalComponent/>*/}
-                  {/*// <!-- 토픽 나가기(소유자) end -->*/}
+              {/*// <!-- 토픽 정보변경 -->*/}
+              {/*<TopicModifyModalComponent/>*/}
+              {/*// <!-- 토픽 정보변경end -->*/}
 
 
-                  {/*// <!-- 토픽 초대 -->*/}
-                  {/*<TopicInviteModalComponent/>*/}
-              </div>
+              {/*// <!-- 토픽 나가기(소유자) -->*/}
+              {/*<TopicExitModalComponent/>*/}
+              {/*// <!-- 토픽 나가기(소유자) end -->*/}
+
+
+              {/*// <!-- 토픽 초대 -->*/}
+              {/*<TopicInviteModalComponent/>*/}
           </div>
       </div>
     );
