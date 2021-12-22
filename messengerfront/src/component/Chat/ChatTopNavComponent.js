@@ -3,12 +3,11 @@ import {Link} from "react-router-dom";
 import ChatLeftSideComponent from "./ChatLeftSideComponent";
 
 function ChatTopNavComponent(props) {
-    const teamDomain = props.teamDomain;
     const topicNo = props.topicNo;
-    console.log(teamDomain,topicNo);
+    console.log(topicNo);
     useEffect(()=> {
         axios.get(
-            "http://localhost:8080/topic?teamDomain="+teamDomain+"&topicNo="+topicNo
+            "http://localhost:8080/topic?topicNo="+topicNo
         ).then(function(){
 
         })
