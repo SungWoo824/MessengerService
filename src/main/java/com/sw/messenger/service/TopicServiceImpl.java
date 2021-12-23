@@ -38,10 +38,16 @@ public class TopicServiceImpl implements TopicService{
     }
 
     @Override
-    public ResponseMessage getTopicInfo(ServletRequest request, Long topicNo) {
+    public ResponseMessage getTopicInfo(ServletRequest request, Long topicNo, String teamDomain) {
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) request);
         Member member = (Member) jwtTokenProvider.getAuthentication(token).getPrincipal();
-        TopicMember topicMember = topicMemberRepository.findByMember_MemberEmailAndTopic_TopicNo(member.getMemberEmail(), topicNo);
+        TopicMember topicMember;
+        if (topicNo==-1){
+            topicMember = topicMemberRepository.findByMember_MemberEmailAndTeam_TeamDomain(member.getMemberEmail(),teamDomain);
+        } else {
+            topicMember = topicMemberRepository.findByMember_MemberEmailAndTopic_TopicNo(member.getMemberEmail(), topicNo);
+        }
+
         if (topicMember==null){
             throw new AccessDeniedException("해당토픽에 대한 권한이 없습니다.");
         }

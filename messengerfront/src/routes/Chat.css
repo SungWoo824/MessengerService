@@ -132,7 +132,9 @@
 
 .chat-menu-sub .label {
     background-color: #dadfeb;
-    border-radius: 50px;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
 }
 
 /* 채팅 탑 메뉴바 css 끝*/

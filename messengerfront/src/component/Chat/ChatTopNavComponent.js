@@ -1,17 +1,29 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import ChatLeftSideComponent from "./ChatLeftSideComponent";
+import axios from "axios";
+import {AuthenticationService} from "../../lib/Authentication";
 
 function ChatTopNavComponent(props) {
-    const topicNo = props.topicNo;
-    console.log(topicNo);
+    const topicNo = props.topicNo??-1;
+    const teamDomain = props.teamDomain;
+    const [topic, setTopic] = useState({});
+    /*
+    topicConfidential: 0
+topicExplain: "General"
+topicIsTopic: 0
+topicName: "General"
+topicNo: 2
+topicRoot: null
+     */
+    const authenticationService = new AuthenticationService();
+    authenticationService.setupAxiosInterceptors();
     useEffect(()=> {
         axios.get(
-            "http://localhost:8080/topic?topicNo="+topicNo
-        ).then(function(){
-
+            "http://localhost:8080/topic?topicNo="+topicNo+"&teamDomain="+teamDomain
+        ).then(function(res){
+            setTopic(res.data.data);
         })
-    })
+    },[props])
     return(
       <div className="chat-top-nav">
           <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top newborder">
@@ -30,11 +42,11 @@ function ChatTopNavComponent(props) {
               </div>
               <div className="chat-menu-center">
                   <div className="chat-menu-title">
-                      <span>topicDto.topic_name</span>
+                      <span>{topic.topicName}</span>
                   </div>
                   <div className="chat-menu-sub">
                       <span className="label">토픽정보</span>
-                      <span>topicDto.topic_explain</span>
+                      <span>{topic.topicExplain}</span>
                   </div>
               </div>
 

@@ -16,9 +16,9 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("/")
-    public ResponseEntity<ResponseMessage> getTopicInfo(ServletRequest request, @RequestParam Long topicNo) {
-        ResponseMessage responseMessage = topicService.getTopicInfo(request, topicNo);
+    @GetMapping("")
+    public ResponseEntity<ResponseMessage> getTopicInfo(ServletRequest request, @RequestParam Long topicNo, @RequestParam String teamDomain) {
+        ResponseMessage responseMessage = topicService.getTopicInfo(request, topicNo, teamDomain);
 
         return new ResponseEntity<>(responseMessage, HttpStatus.OK);
     }

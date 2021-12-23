@@ -9,4 +9,5 @@ import java.util.List;
 public interface TopicMemberRepository extends JpaRepository<TopicMember, Long> {
     List<TopicMember> findByTeam_TeamDomainAndMember_MemberEmail(String teamDomain, String memberEmail);
     TopicMember findByMember_MemberEmailAndTopic_TopicNo(String memberEmail, Long topicNo);
+    TopicMember findByMember_MemberEmailAndTeam_TeamDomain(String memberEmail, String teamDomain);
 }

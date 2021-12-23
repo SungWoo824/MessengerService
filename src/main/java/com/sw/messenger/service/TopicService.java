@@ -9,5 +9,5 @@ import javax.servlet.ServletRequest;
 
 public interface TopicService {
     ResponseMessage registTopic(Topic topic, Team team, Member member);
-    ResponseMessage getTopicInfo(ServletRequest request, Long topicNo);
+    ResponseMessage getTopicInfo(ServletRequest request, Long topicNo, String teamDomain);
 }
