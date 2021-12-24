@@ -52,6 +52,6 @@ public class TopicServiceImpl implements TopicService{
             throw new AccessDeniedException("해당토픽에 대한 권한이 없습니다.");
         }
 
-        return new ResponseMessage(topicMember.getTopic(),"토픽 정보를 불러왔습니다.");
+        return new ResponseMessage(topicMember,"토픽 정보를 불러왔습니다.");
     }
 }

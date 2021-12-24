@@ -2,26 +2,25 @@ import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {AuthenticationService} from "../../lib/Authentication";
+import TopicMenuDropDownComponet from "./TopicMenuDropDownComponent";
 
 function ChatTopNavComponent(props) {
     const topicNo = props.topicNo??-1;
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
-    /*
-    topicConfidential: 0
-topicExplain: "General"
-topicIsTopic: 0
-topicName: "General"
-topicNo: 2
-topicRoot: null
-     */
+    const [topicOwner,setTopicOwner] = useState(false);
+    const onClickToggleButton = (e) => {
+        console.log(e);
+    }
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
     useEffect(()=> {
         axios.get(
             "http://localhost:8080/topic?topicNo="+topicNo+"&teamDomain="+teamDomain
         ).then(function(res){
-            setTopic(res.data.data);
+            const resData = res.data.data
+            setTopic(resData.topic);
+            setTopicOwner(resData.topicMemberPosition===2);
         })
     },[props])
     return(
@@ -64,7 +63,7 @@ topicRoot: null
                       </Link>
 
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                          <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
+                          <button className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
                               <div>
                                   <span>
                                       팀 멤버 전체 보기
@@ -73,7 +72,7 @@ topicRoot: null
                                       countTeamMember
                                   </span>
                               </div>
-                          </Link>
+                          </button>
                           <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTeam">
                               <div>
                                   <span>
@@ -88,72 +87,13 @@ topicRoot: null
 
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={onClickToggleButton}>
                           <i className="fas fa-user-plus fa-lg">
 
                           </i>
                       </button>
 
-                      <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                          {/*토픽소유자*/}
-                          <div>
-                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
-                                  <div>
-                                      <div className="text-truncate">토픽 멤버 보기</div>
-                                  </div>
-                              </Link>
-                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
-                                  <div>
-                                      <div className="text-truncate">토픽 초대하기</div>
-                                  </div>
-                              </Link>
-                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#editTopic">
-                                  <div>
-                                      <div className="text-truncate">토픽 정보 변경</div>
-                                  </div>
-                              </Link>
-                              {/*<c:if test="${topicList.size() > 1}">*/}
-                                  <Link to="#" className="dropdown-item d-flex align-items-center" id="topic-delete-btn">
-                                      <div>
-                                          <div className="text-truncate">토픽 삭제하기</div>
-                                      </div>
-                                  </Link>
-                                  {/*<c:if test="${topicMemberList.size() > 1 }">*/}
-                                      <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn" data-toggle="modal" data-target="#topicMasterChange">
-                                          <div>
-                                              <div className="text-truncate">토픽 나가기</div>
-                                          </div>
-                                      </Link>
-                                  {/*</c:if>*/}
-                                  {/*<c:if test="${topicMemberList.size() < 2 }">*/}
-                                      <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn">
-                                          <div>
-                                              <div className="text-truncate">토픽 나가기</div>
-                                          </div>
-                                      </Link>
-                                  {/*</c:if>*/}
-                              {/*</c:if>*/}
-                          </div>
-
-                          {/*other*/}
-                          <div>
-                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
-                                  <div>
-                                      <div className="text-truncate">토픽 멤버 보기</div>
-                                  </div>
-                              </Link>
-                              <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTopic">
-                                  <div>
-                                      <div className="text-truncate">토픽 초대하기</div>
-                                  </div>
-                              </Link>
-                              <Link to="#" className="dropdown-item d-flex align-items-center topic-out-btn">
-                                  <div>
-                                      <div className="text-truncate">토픽 나가기</div>
-                                  </div>
-                              </Link>
-                          </div>
-                      </div>
+                      <TopicMenuDropDownComponet topicOwner={topicOwner}/>
                   </li>
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
