@@ -136,7 +136,15 @@
     padding: 10px;
     margin-right: 10px;
 }
+.topic-menu-nav{
+    margin-left: auto;
+}
+.topic-menu-nav--item{
+    margin-right: 15px;
+}
+button{
 
+}
 /* 채팅 탑 메뉴바 css 끝*/
 
 /*채팅 창 css*/

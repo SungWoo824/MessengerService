@@ -50,36 +50,17 @@ topicRoot: null
                   </div>
               </div>
 
-              <ul className="navbar-nav ml-auto">
-                  <li className="nav-item dropdown no-arrow d-sm-none">
-                      <Link className="nav-link dropdown-toggle" to="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i className="fas fa-search fa-fw">
-
-                          </i>
-                      </Link>
-                      <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                          <div className="input-group">
-                              <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2"/>
-                              <div className="input-group-append">
-                                  <button className="btn btn-primary" type="button">
-                                      <i className="fas fa-search fa-sm">
-
-                                      </i>
-                                  </button>
-                              </div>
-                          </div>
-                      </div>
-                  </li>
+              <ul className="navbar-nav topic-menu-nav">
 
                   {/*팀, 토픽 기능 시작*/}
-                  <li className="nav-item dropdown no-arrow mx-1">
+                  <li className="nav-item dropdown topic-menu-nav--item">
                       <Link className="nav-link dropdown-toggle" to="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-user-friends fa-lg">
 
                           </i>
                           <span className="badge badge-primary">
                                       countTeamMember
-                                  </span>
+                          </span>
                       </Link>
 
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -106,12 +87,12 @@ topicRoot: null
 
 
 
-                  <li className="nav-item dropdown no-arrow mx-1">
-                      <Link className="nav-link dropdown-toggle" to="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <li className="nav-item dropdown no-arrow topic-menu-nav--item">
+                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <i className="fas fa-user-plus fa-lg">
 
                           </i>
-                      </Link>
+                      </button>
 
                       <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                           {/*토픽소유자*/}
@@ -175,12 +156,7 @@ topicRoot: null
                       </div>
                   </li>
 
-                  <li className="topbar-divider d-none d-sm-block">
-
-                  </li>
-
-
-                  <li className="nav-item dropdown no-arrow">
+                  <li className="nav-item dropdown no-arrow topic-menu-nav--item">
                       <Link to="#" className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <span className="mr-2 d-none d-lg-inline text-gray-600 small">member_name</span>
                           <img className="img-profile rounded-circle" src='' alt=""/>
