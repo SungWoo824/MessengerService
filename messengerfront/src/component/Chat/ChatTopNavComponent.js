@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {AuthenticationService} from "../../lib/Authentication";
@@ -9,8 +9,9 @@ function ChatTopNavComponent(props) {
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
     const [topicOwner,setTopicOwner] = useState(false);
+    const topicDropDownMenu = useRef(null);
     const onClickToggleButton = (e) => {
-        console.log(e);
+        console.log(topicDropDownMenu.show());
     }
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
@@ -93,7 +94,7 @@ function ChatTopNavComponent(props) {
                           </i>
                       </button>
 
-                      <TopicMenuDropDownComponet topicOwner={topicOwner}/>
+                      <TopicMenuDropDownComponet ref={topicDropDownMenu} topicOwner={topicOwner}/>
                   </li>
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
