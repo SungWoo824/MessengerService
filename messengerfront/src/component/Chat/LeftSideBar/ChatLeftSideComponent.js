@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import ChatTopicListComponent from "./ChatTopicListComponent";
-import {AuthenticationService} from "../../lib/Authentication";
+import {AuthenticationService} from "../../../lib/Authentication";
 import axios from "axios";
 
 function ChatLeftSideComponent(props){

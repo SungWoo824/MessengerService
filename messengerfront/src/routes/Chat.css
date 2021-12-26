@@ -146,6 +146,9 @@ button{
     border: none;
     background-color: #ffffff;
 }
+.shadow div{
+    background-color: #ffffff;
+}
 /* 채팅 탑 메뉴바 css 끝*/
 
 /*채팅 창 css*/

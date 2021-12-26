@@ -1,11 +1,15 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
-function TopicMenuDropDownComponent(topicOwner){
+import PropTypes from 'prop-types'
+import styled from "styled-components";
+
+function TopicMenuDropDownComponent(props){
     return (
-        <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+        <>
+        <TopicMenuDropDown visible={props.visible} className="shadow" aria-labelledby="messagesDropdown">
             {/*토픽소유자*/}
-            {topicOwner?
+            {props.topicOwner?
                 <div>
                     <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTopic">
                         <div>
@@ -55,9 +59,28 @@ function TopicMenuDropDownComponent(topicOwner){
                 </div>
 
             }
-
-        </div>
+        </TopicMenuDropDown>
+        </>
     );
 }
 
+TopicMenuDropDownComponent.propTypes = {
+    topicOwner: PropTypes.bool,
+}
+const TopicMenuDropDown = styled.div`
+          display: ${(props) => (props.visible ? 'block' : 'none')};
+          z-index: 110;
+          background-color: rgba(0, 0, 0, 0);
+        `
+const ModalOverlay = styled.div`
+  box-sizing: border-box;
+  display: ${(props) => (props.visible ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+`
 export default TopicMenuDropDownComponent;

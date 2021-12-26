@@ -1,7 +1,8 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
+import styled from 'styled-components'
 import axios from "axios";
-import {AuthenticationService} from "../../lib/Authentication";
+import {AuthenticationService} from "../../../lib/Authentication";
 import TopicMenuDropDownComponet from "./TopicMenuDropDownComponent";
 
 function ChatTopNavComponent(props) {
@@ -9,10 +10,18 @@ function ChatTopNavComponent(props) {
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
     const [topicOwner,setTopicOwner] = useState(false);
-    const topicDropDownMenu = useRef(null);
-    const onClickToggleButton = (e) => {
-        console.log(topicDropDownMenu.show());
+    const [modalVisible, setModalVisible] = useState(false);
+    const modalArea = useRef();
+    const openModal = () => {
+        setModalVisible(true);
+        console.log(modalVisible);
     }
+    const closeModal = e => {
+        if (modalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
+            setModalVisible(false);
+        }
+    }
+
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
     useEffect(()=> {
@@ -22,8 +31,15 @@ function ChatTopNavComponent(props) {
             const resData = res.data.data
             setTopic(resData.topic);
             setTopicOwner(resData.topicMemberPosition===2);
+
         })
-    },[props])
+    },[props]);
+    useEffect(()=> {
+        window.addEventListener('click',closeModal);
+        return () => {
+            window.removeEventListener('click',closeModal);
+        }
+    },[])
     return(
       <div className="chat-top-nav">
           <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top newborder">
@@ -88,13 +104,17 @@ function ChatTopNavComponent(props) {
 
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={onClickToggleButton}>
+                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={openModal}>
                           <i className="fas fa-user-plus fa-lg">
 
                           </i>
                       </button>
+                      <TopicMenuDropDownComponet
+                          ref={modalArea}
+                          topicOwner={topicOwner}
+                          visible={modalVisible}
+                      />
 
-                      <TopicMenuDropDownComponet ref={topicDropDownMenu} topicOwner={topicOwner}/>
                   </li>
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
