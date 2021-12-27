@@ -13,11 +13,12 @@ function ChatTopNavComponent(props) {
     const [modalVisible, setModalVisible] = useState(false);
     const modalArea = useRef();
     const openModal = () => {
-        setModalVisible(true);
+        setModalVisible((modalVisible: boolean) => !modalVisible);
         console.log(modalVisible);
     }
-    const closeModal = e => {
-        if (modalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
+    const closeModal = (e) => {
+        if (!modalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
+            console.log(modalArea.current);
             setModalVisible(false);
         }
     }
@@ -33,13 +34,14 @@ function ChatTopNavComponent(props) {
             setTopicOwner(resData.topicMemberPosition===2);
 
         })
-    },[props]);
-    useEffect(()=> {
         window.addEventListener('click',closeModal);
-        return () => {
-            window.removeEventListener('click',closeModal);
-        }
-    },[])
+    },[props]);
+    // useEffect(()=> {
+    //
+    //     return () => {
+    //         window.removeEventListener('click',closeModal);
+    //     }
+    // },[])
     return(
       <div className="chat-top-nav">
           <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top newborder">
@@ -104,16 +106,17 @@ function ChatTopNavComponent(props) {
 
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={openModal}>
-                          <i className="fas fa-user-plus fa-lg">
+                      <div ref={modalArea}>
+                          <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={openModal}>
+                              <i className="fas fa-user-plus fa-lg">
 
-                          </i>
-                      </button>
-                      <TopicMenuDropDownComponet
-                          ref={modalArea}
-                          topicOwner={topicOwner}
-                          visible={modalVisible}
-                      />
+                              </i>
+                          </button>
+                          <TopicMenuDropDownComponet
+                              topicOwner={topicOwner}
+                              visible={modalVisible}
+                          />
+                      </div>
 
                   </li>
 
