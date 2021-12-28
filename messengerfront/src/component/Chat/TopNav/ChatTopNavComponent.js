@@ -4,27 +4,32 @@ import styled from 'styled-components'
 import axios from "axios";
 import {AuthenticationService} from "../../../lib/Authentication";
 import TopicMenuDropDownComponet from "./TopicMenuDropDownComponent";
+import TeamMenuDropDownComponent from "./TeamMenuDropDownComponent";
+import UserInfoDropDownComponent from "./UserInfoDropDownComponent";
 
 function ChatTopNavComponent(props) {
     const topicNo = props.topicNo??-1;
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
     const [topicOwner,setTopicOwner] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
+    const [topicModalVisible, setTopicModalVisible] = useState(false);
     const modalArea = useRef();
-    const openModal = () => {
-        setModalVisible((modalVisible: boolean) => !modalVisible);
-        console.log(modalVisible);
+
+    const openModal = (e) => {
+        console.log(e);
+        debugger;
+        setTopicModalVisible((modalVisible: boolean) => !modalVisible);
     }
     const closeModal = (e) => {
-        if (!modalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
-            console.log(modalArea.current);
-            setModalVisible(false);
+        if (!topicModalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
+            setTopicModalVisible(false);
         }
     }
 
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
+    const userName = authenticationService.getLoggedInUserName();
+
     useEffect(()=> {
         axios.get(
             "http://localhost:8080/topic?topicNo="+topicNo+"&teamDomain="+teamDomain
@@ -36,16 +41,10 @@ function ChatTopNavComponent(props) {
         })
         window.addEventListener('click',closeModal);
     },[props]);
-    // useEffect(()=> {
-    //
-    //     return () => {
-    //         window.removeEventListener('click',closeModal);
-    //     }
-    // },[])
     return(
       <div className="chat-top-nav">
-          <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top newborder">
-              <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
+          <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top new-border">
+              <button className="btn btn-link d-md-none rounded-circle mr-3">
                   <i className="fa fa-bars">
                   </i>
               </button>
@@ -72,34 +71,16 @@ function ChatTopNavComponent(props) {
 
                   {/*팀, 토픽 기능 시작*/}
                   <li className="nav-item dropdown topic-menu-nav--item">
-                      <Link className="nav-link dropdown-toggle" to="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <button className="nav-link dropdown-toggle">
                           <i className="fas fa-user-friends fa-lg">
 
                           </i>
                           <span className="badge badge-primary">
-                                      countTeamMember
+                            countTeamMember
                           </span>
-                      </Link>
+                      </button>
 
-                      <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                          <button className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inTeam">
-                              <div>
-                                  <span>
-                                      팀 멤버 전체 보기
-                                  </span>
-                                  <span className="badge badge-primary">
-                                      countTeamMember
-                                  </span>
-                              </div>
-                          </button>
-                          <Link to="#" className="dropdown-item d-flex align-items-center" data-toggle="modal" data-target="#inviteTeam">
-                              <div>
-                                  <span>
-                                      팀 초대하기
-                                  </span>
-                              </div>
-                          </Link>
-                      </div>
+                      <TeamMenuDropDownComponent/>
                   </li>
 
 
@@ -107,42 +88,26 @@ function ChatTopNavComponent(props) {
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
                       <div ref={modalArea}>
-                          <button className="nav-link dropdown-toggle" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={openModal}>
+                          <button className="nav-link dropdown-toggle" onClick={openModal}>
                               <i className="fas fa-user-plus fa-lg">
 
                               </i>
                           </button>
                           <TopicMenuDropDownComponet
                               topicOwner={topicOwner}
-                              visible={modalVisible}
+                              visible={topicModalVisible}
                           />
                       </div>
 
                   </li>
 
                   <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <Link to="#" className="nav-link dropdown-toggle" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <span className="mr-2 d-none d-lg-inline text-gray-600 small">member_name</span>
+                      <button className="nav-link dropdown-toggle">
+                          <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userName}</span>
                           <img className="img-profile rounded-circle" src='' alt=""/>
-                      </Link>
+                      </button>
 
-                      <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                          <Link to="#" className="dropdown-item">
-                              <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400">
-
-                              </i>
-                              내 정보보기
-                          </Link>
-                          <div className="dropdown-divider">
-
-                          </div>
-                          <Link to="#" className="dropdown-item">
-                              <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400">
-
-                              </i>
-                              로그아웃
-                          </Link>
-                      </div>
+                      <UserInfoDropDownComponent/>
                   </li>
               </ul>
           </nav>
