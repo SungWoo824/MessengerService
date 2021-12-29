@@ -7,8 +7,8 @@ import axios from "axios";
 function ChatLeftSideComponent(props){
     const authenticationService = new AuthenticationService();
     authenticationService.setupAxiosInterceptors();
-    let [topicList, setTopicList] = useState([]);
-    let [topicLoading,setTopicLoading] = useState(true);
+    const [topicList, setTopicList] = useState([]);
+    const [topicLoading,setTopicLoading] = useState(true);
 
     useEffect(()=>{
         axios.get(

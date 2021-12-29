@@ -1,6 +1,4 @@
 import React, {useEffect, useRef, useState} from "react";
-import {Link} from "react-router-dom";
-import styled from 'styled-components'
 import axios from "axios";
 import {AuthenticationService} from "../../../lib/Authentication";
 import TopicMenuDropDownComponet from "./TopicMenuDropDownComponent";
@@ -12,17 +10,57 @@ function ChatTopNavComponent(props) {
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
     const [topicOwner,setTopicOwner] = useState(false);
-    const [topicModalVisible, setTopicModalVisible] = useState(false);
-    const modalArea = useRef();
+    const [modalAreaCheck, setModalAreaCheck] = useState({
+        teamArea : false,
+        topicArea : false,
+        userInfoArea : false
+    })
 
+    const { teamArea, topicArea, userInfoArea } = modalAreaCheck;
+    const areaRef = useRef([]);
     const openModal = (e) => {
-        console.log(e);
-        debugger;
-        setTopicModalVisible((modalVisible: boolean) => !modalVisible);
+        const target = e.target.nextElementSibling.id;
+        checkModalArea(target);
     }
     const closeModal = (e) => {
-        if (!topicModalVisible && (!modalArea.current || !modalArea.current.contains(e.target))){
-            setTopicModalVisible(false);
+        Object.keys(modalAreaCheck).map(function(key) {
+            if (modalAreaCheck[key]){
+                let modalArea = null;
+                console.log(modalArea)
+                if (key === "teamArea"){
+                    modalArea = areaRef.current[0];
+                } else if (key === "topicArea") {
+                    modalArea = areaRef.current[1];
+                } else if (key === "userInfoArea") {
+                    modalArea = areaRef.current[2];
+                }
+
+                if (!modalArea.current || !modalArea.current.contains(e.target)) {
+                    checkModalArea(key);
+                }
+                return false;
+            }
+        });
+    }
+    const checkModalArea = (target) => {
+        if (target === "teamArea"){
+            setModalAreaCheck({
+                "teamArea" : !teamArea,
+                "topicArea" : false,
+                "userInfoArea" : false
+            })
+        } else if (target === "topicArea") {
+            setModalAreaCheck({
+                "teamArea" : false,
+                "topicArea" : !topicArea,
+                "userInfoArea" : false
+            })
+        } else if (target === "userInfoArea") {
+            setModalAreaCheck({
+                "teamArea" : false,
+                "topicArea" : false,
+                "userInfoArea" : !userInfoArea
+            })
         }
     }
 
@@ -37,7 +75,6 @@ function ChatTopNavComponent(props) {
             const resData = res.data.data
             setTopic(resData.topic);
             setTopicOwner(resData.topicMemberPosition===2);
-
         })
         window.addEventListener('click',closeModal);
     },[props]);
@@ -70,8 +107,8 @@ function ChatTopNavComponent(props) {
               <ul className="navbar-nav topic-menu-nav">
 
                   {/*팀, 토픽 기능 시작*/}
-                  <li className="nav-item dropdown topic-menu-nav--item">
-                      <button className="nav-link dropdown-toggle">
+                  <li ref={elem => (areaRef.current[0] = elem)} className="nav-item dropdown topic-menu-nav--item">
+                      <button className="nav-link dropdown-toggle"  onClick={openModal}>
                           <i className="fas fa-user-friends fa-lg">
 
                           </i>
@@ -80,34 +117,43 @@ function ChatTopNavComponent(props) {
                           </span>
                       </button>
 
-                      <TeamMenuDropDownComponent/>
+                      <TeamMenuDropDownComponent
+                          id={"teamArea"}
+                          topicOwner={topicOwner}
+                          visible={teamArea}
+                      />
                   </li>
 
 
 
 
-                  <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <div ref={modalArea}>
+                  <li ref={elem => (areaRef.current[1] = elem)} className="nav-item dropdown no-arrow topic-menu-nav--item">
+                      <div>
                           <button className="nav-link dropdown-toggle" onClick={openModal}>
                               <i className="fas fa-user-plus fa-lg">
 
                               </i>
                           </button>
                           <TopicMenuDropDownComponet
+                              id={"topicArea"}
                               topicOwner={topicOwner}
-                              visible={topicModalVisible}
+                              visible={topicArea}
                           />
                       </div>
 
                   </li>
 
-                  <li className="nav-item dropdown no-arrow topic-menu-nav--item">
-                      <button className="nav-link dropdown-toggle">
+                  <li ref={elem => (areaRef.current[2] = elem)} className="nav-item dropdown no-arrow topic-menu-nav--item">
+                      <button className="nav-link dropdown-toggle"  onClick={openModal}>
                           <span className="mr-2 d-none d-lg-inline text-gray-600 small">{userName}</span>
                           <img className="img-profile rounded-circle" src='' alt=""/>
                       </button>
 
-                      <UserInfoDropDownComponent/>
+                      <UserInfoDropDownComponent
+                          id={"userInfoArea"}
+                          topicOwner={topicOwner}
+                          visible={userInfoArea}
+                      />
                   </li>
               </ul>
           </nav>
