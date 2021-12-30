@@ -26,7 +26,6 @@ function ChatTopNavComponent(props) {
         Object.keys(modalAreaCheck).map(function(key) {
             if (modalAreaCheck[key]){
                 let modalArea = null;
-                console.log(modalArea)
                 if (key === "teamArea"){
                     modalArea = areaRef.current[0];
                 } else if (key === "topicArea") {
@@ -41,6 +40,7 @@ function ChatTopNavComponent(props) {
                 return false;
             }
         });
+        window.removeEventListener('click',closeModal);
     }
     const checkModalArea = (target) => {
         if (target === "teamArea"){
@@ -76,8 +76,10 @@ function ChatTopNavComponent(props) {
             setTopic(resData.topic);
             setTopicOwner(resData.topicMemberPosition===2);
         })
+    },[]);
+    useEffect(() => {
         window.addEventListener('click',closeModal);
-    },[props]);
+    },[modalAreaCheck])
     return(
       <div className="chat-top-nav">
           <nav className="navbar-expand navbar-light bg-white top-nav-bar static-top new-border">
