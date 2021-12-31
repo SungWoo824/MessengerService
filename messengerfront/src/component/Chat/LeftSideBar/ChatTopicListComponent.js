@@ -7,8 +7,8 @@ function ChatTopicListComponent({topicNo, topicName, topicExplain, topicConfiden
             <strong className="topic-name">
                 {topicName}
             </strong>
-            <span className="badge badge-primary badge-pill">
-                memberChatCount[status.index].count
+            <span className="badge badge-primary badge-pill badge-area">
+                count
             </span>
         </Link>
     );
