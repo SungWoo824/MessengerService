@@ -16,10 +16,12 @@ function Topic({match}) {
     return (
       <div className="collapse-item">
           <ChatLeftSideComponent teamDomain={match.params.teamDomain}/>
+          <div className="content-container">
           <ChatTopNavComponent teamDomain={match.params.teamDomain} topicNo={match.params.topicNo}/>
+          <ChatAreaComponent/>
+          </div>
           <div id="content">
               {/*채팅 부분*/}
-              {/*<ChatAreaComponent/>*/}
               {/*팀  모달 시작*/}
               {/*<ChatTeamModalComponent/>*/}
               {/*// <!-- 팀 리스트end -->*/}

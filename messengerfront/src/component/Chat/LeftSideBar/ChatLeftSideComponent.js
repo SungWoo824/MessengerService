@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import ChatTopicListComponent from "./ChatTopicListComponent";
 import {AuthenticationService} from "../../../lib/Authentication";
 import axios from "axios";
+import SideLogoComponent from "./SideLogoComponent";
 
 function ChatLeftSideComponent(props){
     const authenticationService = new AuthenticationService();
@@ -30,16 +31,7 @@ function ChatLeftSideComponent(props){
         <div id="content-wrapper">
             {/*왼쪽 바 시작*/}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion newline" id="accordionSidebar">
-                <div className="sidebar-brand d-flex" >
-                    <div className="logowrap">
-                        <div className="sidebar-brand-icon logo-back">
-                            <img className="logo-icon" src="/images/logo.png" alt="logo" />
-                        </div>
-                        <div className="sidebar-brand-text">
-                            Circle
-                        </div>
-                    </div>
-                </div>
+                <SideLogoComponent/>
                 <li className="nav-item move-to-main">
                     <Link className="nav-link" to="/member/mypage">
                         <div className="bg-img">
