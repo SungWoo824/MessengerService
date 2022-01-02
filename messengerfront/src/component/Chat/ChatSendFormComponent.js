@@ -20,7 +20,7 @@ function ChatSendFormComponent() {
         <form>
             <div className="chat-send-content">
                     <div className="chat-send-text">
-                        <input id="dropzone" className="form-control user-input" type="text" placeholder="메시지를 입력하세요" onChange={handleInputMessage}/>
+                        <input id="dropzone" className="user-input" type="text" placeholder="메시지를 입력하세요" onChange={handleInputMessage}/>
                     </div>
                     <div className="chat-send-button">
                         <button type="submit" className="btn btn-lg btn-primary send-btn">전송</button>

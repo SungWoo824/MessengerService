@@ -28,7 +28,7 @@ function ChatWebSocketComponent() {
         setMessages(messages.concat(msg));
     };
     return (
-        <div>
+        <>
             {/*<SockJsClient*/}
             {/*    url={"http://localhost:6002/my-chat/"}*/}
             {/*    topics={["/topic/group"]}*/}
@@ -50,7 +50,7 @@ function ChatWebSocketComponent() {
                     ))}
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 
