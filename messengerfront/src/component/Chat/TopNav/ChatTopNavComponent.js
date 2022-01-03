@@ -72,7 +72,7 @@ function ChatTopNavComponent(props) {
         axios.get(
             "http://localhost:8080/topic?topicNo="+topicNo+"&teamDomain="+teamDomain
         ).then(function(res){
-            const resData = res.data.data
+            const resData = res.data.data.topicMember;
             setTopic(resData.topic);
             setTopicOwner(resData.topicMemberPosition===2);
         })

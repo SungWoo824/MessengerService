@@ -6,6 +6,7 @@ import com.sw.messenger.domain.Team;
 import com.sw.messenger.domain.Topic;
 import com.sw.messenger.domain.TopicMember;
 import com.sw.messenger.domain.dto.ResponseMessage;
+import com.sw.messenger.domain.dto.TopicVo;
 import com.sw.messenger.repository.TopicMemberRepository;
 import com.sw.messenger.repository.TopicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Service
 public class TopicServiceImpl implements TopicService{
@@ -51,7 +53,11 @@ public class TopicServiceImpl implements TopicService{
         if (topicMember==null){
             throw new AccessDeniedException("해당토픽에 대한 권한이 없습니다.");
         }
+        List<Object> memberList = topicMemberRepository.getTopicMemberList(topicMember.getTopic().getTopicNo());
+        TopicVo topicVo = new TopicVo();
+        topicVo.setTopicMember(topicMember);
+        topicVo.setTopicMemberList(memberList);
 
-        return new ResponseMessage(topicMember,"토픽 정보를 불러왔습니다.");
+        return new ResponseMessage(topicVo,"토픽 정보를 불러왔습니다.");
     }
 }

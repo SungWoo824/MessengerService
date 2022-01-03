@@ -1,6 +1,7 @@
 package com.sw.messenger.controller;
 
 import com.sw.messenger.domain.dto.ResponseMessage;
+import com.sw.messenger.repository.TopicMemberRepository;
 import com.sw.messenger.service.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,9 @@ public class TopicController {
 
     @Autowired
     private TopicService topicService;
+
+    @Autowired
+    private TopicMemberRepository topicMemberRepository;
 
     @GetMapping("")
     public ResponseEntity<ResponseMessage> getTopicInfo(ServletRequest request, @RequestParam Long topicNo, @RequestParam String teamDomain) {
