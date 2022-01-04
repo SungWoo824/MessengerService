@@ -18,8 +18,6 @@ function SignInComponent(){
 
     // login 버튼 클릭 이벤트
     const onClickLogin = () => {
-        console.log('click login');
-        console.log(inputId,inputPw);
         service.executeJwtAuthenticationService(inputId, inputPw)
             .then(function (response){
                 service.registerSuccessfulLoginForJwt(inputId,response.data.data);
@@ -29,6 +27,11 @@ function SignInComponent(){
         });
     }
 
+    const onPressEnter = (e) => {
+      if (e.key==='Enter'){
+          onClickLogin();
+      }
+    }
 
     return (
         <div className="circle-main-content">
@@ -36,7 +39,7 @@ function SignInComponent(){
                 <div id="fullpage">
                     <div className="section">
                         <div className="login-div">
-                            <form action="signin" method="post">
+                            <form action="signin" method="post"  onKeyPress={onPressEnter}>
                                 <div>
                                     <span>로그인</span>
 
@@ -54,7 +57,7 @@ function SignInComponent(){
                                 </div>
                                 <div>
                                     <div>
-                                        <button type="button" className="btn btn-primary signin-submit"
+                                        <button id="loginButton" type="button" className="btn btn-primary signin-submit"
                                          onClick={onClickLogin}>로그인</button>
                                     </div>
                                 </div>

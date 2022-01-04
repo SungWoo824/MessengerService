@@ -430,7 +430,7 @@ span {
 }
 
 .member-mypage-img {
-    margin: auto auto 2rem auto;
+
 }
 
 .member-profile-button {
@@ -460,32 +460,28 @@ span {
     display: flex;
 }
 
-.mypage-profile-div {
-    flex: 1;
-    width: 30%;
-    padding: 2rem;
-    box-sizing: border-box;
-    margin: auto;
-    font-size: 1.5rem;
+.mypage-div-area {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 10px;
 }
 
 .mypage-name-div {
-    flex: 2;
-    width: 70%;
-    box-sizing: border-box;
-    margin: 0;
-    text-align: left;
-    padding: 2rem;
-
-    font-size: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.mypage-team-div {
-    flex: 1;
-    padding: 2rem;
-    box-sizing: border-box;
+.mypage-team-button {
+    margin: 5px;
+}
+.mypage-team-button-first{
+    margin-left: auto;
+    margin-right: 5px;
+}
+.mypage-btn-area{
 
-    font-size: 1.5rem;
 }
 
 .preview-img {

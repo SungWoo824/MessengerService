@@ -5,14 +5,14 @@ function MypageInfoComponent({memberNo,memberEmail,memberName,memberGrade}) {
 
     return (
         <div className="mypage-div">
-            <div className="member-mypage-img">
+            <div className="mypage-div-area">
                 <img id="member-profile-img" src='' alt=''/>
             </div>
-            <div className="mypage-name-div">
+            <div className="mypage-div-area">
                 <span>{memberName}</span>
                 <p>{memberEmail}</p>
             </div>
-            <div className="mypage-profile-div">
+            <div className="mypage-div-area">
                 <Link to="/member/modify">프로필 설정</Link>
             </div>
         </div>

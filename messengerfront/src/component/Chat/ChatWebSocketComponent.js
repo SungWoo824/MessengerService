@@ -30,7 +30,7 @@ function ChatWebSocketComponent() {
     return (
         <>
             {/*<SockJsClient*/}
-            {/*    url={"http://localhost:6002/my-chat/"}*/}
+            {/*    url={"http://localhost:8080/my-chat"}*/}
             {/*    topics={["/topic/group"]}*/}
             {/*    onConnect={console.log("connected!")}*/}
             {/*    onDisconnect={console.log("disconnected!")}*/}

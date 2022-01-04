@@ -10,12 +10,13 @@ function ChatTopNavComponent(props) {
     const teamDomain = props.teamDomain;
     const [topic, setTopic] = useState({});
     const [topicOwner,setTopicOwner] = useState(false);
+    const [topicMember,setTopicMember] = useState([]);
+
     const [modalAreaCheck, setModalAreaCheck] = useState({
         teamArea : false,
         topicArea : false,
         userInfoArea : false
-    })
-
+    });
     const { teamArea, topicArea, userInfoArea } = modalAreaCheck;
     const areaRef = useRef([]);
     const openModal = (e) => {
@@ -72,9 +73,13 @@ function ChatTopNavComponent(props) {
         axios.get(
             "http://localhost:8080/topic?topicNo="+topicNo+"&teamDomain="+teamDomain
         ).then(function(res){
-            const resData = res.data.data.topicMember;
-            setTopic(resData.topic);
-            setTopicOwner(resData.topicMemberPosition===2);
+            const topicInfo = res.data.data.topicMember;
+            setTopic(topicInfo.topic);
+            setTopicOwner(topicInfo.topicMemberPosition===2);
+            const topicMemberList = res.data.data.topicMemberList;
+            topicMemberList.forEach(topicMember => {
+                setTopicMember(prevState => [...prevState,topicMember]);
+            });
         })
     },[]);
     useEffect(() => {
