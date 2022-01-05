@@ -29,14 +29,15 @@ function ChatWebSocketComponent() {
     };
     return (
         <>
-            {/*<SockJsClient*/}
-            {/*    url={"http://localhost:8080/my-chat"}*/}
-            {/*    topics={["/topic/group"]}*/}
-            {/*    onConnect={console.log("connected!")}*/}
-            {/*    onDisconnect={console.log("disconnected!")}*/}
-            {/*    onMessage={(msg) => onMessageReceived(msg)}*/}
-            {/*    debug={false}*/}
-            {/*/>*/}
+            <SockJsClient
+                url={"http://localhost:8080/my-chat"}
+                topics={["/topic/group"]}
+                onConnect={console.log("connected!")}
+                onDisconnect={console.log("disconnected!")}
+                onMessage={(msg) => onMessageReceived(msg)}
+                debug={false}
+                withCredentials={true}
+            />
             <div className="message">
                 <div id="chat-content">
                     {messages.map((message)=>(
