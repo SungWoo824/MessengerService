@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html", "/v2/api-docs", "/swagger-resources/**", "/webjars/**", "/swagger/**"
     };
     private static final String[] PUBLIC_URI = {
-            "/*/signin", "/*/signin/**", "/*/signup", "/*/signup/**"
+            "/*/signin", "/*/signin/**", "/*/signup", "/*/signup/**", "/*/my-chat/**"
     };
     private static final String[] PUBLIC_GET_URI = {
             "/exception/**", "/", "/actuator/health"
