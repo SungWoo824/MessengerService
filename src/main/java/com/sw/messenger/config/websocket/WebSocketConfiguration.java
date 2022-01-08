@@ -12,13 +12,13 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/my-chat")
-                .setAllowedOrigins("*")
+                .setAllowedOrigins("http://localhost:3000")
                 .withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.setApplicationDestinationPrefixes("/kafka");
-        registry.enableSimpleBroker("/topic/");
+        registry.enableSimpleBroker("/topic");
     }
 }

@@ -80,6 +80,7 @@ function ChatTopNavComponent(props) {
             topicMemberList.forEach(topicMember => {
                 setTopicMember(prevState => [...prevState,topicMember]);
             });
+            console.log(topicMember);
         })
     },[]);
     useEffect(() => {
