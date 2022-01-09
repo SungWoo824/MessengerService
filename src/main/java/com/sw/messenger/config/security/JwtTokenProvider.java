@@ -65,6 +65,7 @@ public class JwtTokenProvider {
 
         try{
             Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken);
+            System.out.println("@@@@@@@@@@@@@@");
             return !claims.getBody().getExpiration().before(new Date());
         } catch (SignatureException e) {
             logger.info("Invalid JWT signature", e);

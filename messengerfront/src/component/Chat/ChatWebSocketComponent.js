@@ -4,8 +4,6 @@ import ChatContentComponent from "./ChatContentComponent";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
 
-let sockJS = new SockJS("http://localhost:8080/my-chat");
-let stompClient = Stomp.over(sockJS);
 
 function ChatWebSocketComponent() {
     const [messages, setMessages] = useState([]);
@@ -15,14 +13,20 @@ function ChatWebSocketComponent() {
     const [contents, setContents] = React.useState([]);
     const [username, setUsername] = React.useState('');
 
+    let sockJS = new SockJS("http://localhost:8080/my-chat");
+    let stompClient = Stomp.over(sockJS);
+    const userToken = localStorage.getItem('token');
+    console.log(userToken);
+
     useEffect(()=>{
-        stompClient.connect({Authorization: localStorage.getItem('token')},()=>{
+        stompClient.connect({"X-AUTH-TOKEN" : userToken},(e)=>{
+            console.log(e);
             stompClient.subscribe('/topic/group',(data)=>{
                 console.log(data);
                 // const newMessage : message = JSON.parse(data.body) as message;
                 // addMessage(newMessage);
             });
-        },()=>{console.log("Socket Error!!!!")});
+        },(e)=>{console.log("Socket Error!!!!");});
     },[]);
     // useEffect(() => {
     //     axios.get(
