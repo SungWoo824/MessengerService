@@ -15,11 +15,15 @@ function ChatWebSocketComponent() {
 
     let sockJS = new SockJS("http://localhost:8080/my-chat");
     let stompClient = Stomp.over(sockJS);
-    const userToken = localStorage.getItem('token');
+    const userToken = {
+        login: 'scody1219@gmail.com',
+        passcode: 'qkrtjddn12!',
+        "X-AUTH-TOKEN" : localStorage.getItem('token')
+    };
     console.log(userToken);
 
     useEffect(()=>{
-        stompClient.connect({"X-AUTH-TOKEN" : userToken},(e)=>{
+        stompClient.connect(userToken,(e)=>{
             console.log(e);
             stompClient.subscribe('/topic/group',(data)=>{
                 console.log(data);
