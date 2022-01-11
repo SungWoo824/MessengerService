@@ -21,6 +21,8 @@ dependencies {
     implementation 'org.hibernate:hibernate-entitymanager'
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.webjars:stomp-websocket:2.3.4'
+    implementation 'org.webjars:sockjs-client:1.5.1'
     compileOnly 'cglib:cglib:3.3.0'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

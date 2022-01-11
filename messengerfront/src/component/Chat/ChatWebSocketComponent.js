@@ -15,22 +15,16 @@ function ChatWebSocketComponent() {
 
     let sockJS = new SockJS("http://localhost:8080/my-chat");
     let stompClient = Stomp.over(sockJS);
-    const userToken = {
-        login: 'scody1219@gmail.com',
-        passcode: 'qkrtjddn12!',
-        "X-AUTH-TOKEN" : localStorage.getItem('token')
-    };
-    console.log(userToken);
-
+    const stompConfig = {'token': localStorage.getItem('token')};
     useEffect(()=>{
-        stompClient.connect(userToken,(e)=>{
+        stompClient.connect(stompConfig,(e)=>{
             console.log(e);
             stompClient.subscribe('/topic/group',(data)=>{
                 console.log(data);
                 // const newMessage : message = JSON.parse(data.body) as message;
                 // addMessage(newMessage);
             });
-        },(e)=>{console.log("Socket Error!!!!");});
+        });
     },[]);
     // useEffect(() => {
     //     axios.get(
