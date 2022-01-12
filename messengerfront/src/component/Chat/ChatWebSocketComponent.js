@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {AuthenticationService} from "../../lib/Authentication";
 import ChatContentComponent from "./ChatContentComponent";
-import Stomp from "stompjs";
+import Stomp from "@stomp/stompjs";
 import SockJS from "sockjs-client";
 
 
